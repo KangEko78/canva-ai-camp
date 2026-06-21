@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Buku Materi — Canva AI Camp 2026 | Perpusda Banyuwangi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep:#1C1B2A;--p9:#2E1A5E;--p7:#3B2A6B;--p6:#6D28D9;--p4:#A855F7;--p2:#DDD6FE;--p1:#F3F0FF;
+      --gold:#FFD966;--gdk:#F59E0B;--g1:#FFF9EF;
+      --gr6:#10B981;--gr1:#ECFDF5;--rd5:#EF4444;--rd1:#FEF2F2;
+      --bl5:#3B82F6;--bl1:#EFF6FF;--or5:#F97316;--or1:#FFF7ED;
+      --body:#3A3A4E;--mt:#7A7A90;--cream:#FDFBF7;--w:#FFFFFF;--bd:#E8E4D9;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);line-height:1.8;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;color:var(--deep);letter-spacing:-0.02em;line-height:1.25}
+    .serif{font-family:'Playfair Display',serif}
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--p4);border-radius:10px}
+
+    /* ===== NAV ===== */
+    .ebook-nav{
+      position:fixed;left:0;top:0;width:280px;height:100vh;height:100dvh;
+      background:var(--deep);color:#fff;padding:0 0 1.5rem;overflow-y:auto;z-index:100;
+      transform:translateX(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1);
+      box-shadow:4px 0 30px rgba(0,0,0,.3);
+    }
+    .ebook-nav.open{transform:translateX(0)}
+    .ebook-nav .nh{padding:1.2rem 1.3rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:.6rem;position:sticky;top:0;background:var(--deep);z-index:2}
+    .ebook-nav .nh h4{color:var(--gold);font-size:.7rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:.15rem;display:flex;align-items:center;gap:6px}
+    .ebook-nav .nh p{font-size:.72rem;opacity:.45}
+    .ebook-nav .nsep{height:1px;background:rgba(255,255,255,.06);margin:.4rem 1.3rem}
+    .ebook-nav a{display:flex;align-items:center;gap:9px;padding:.45rem 1.3rem;color:rgba(255,255,255,.5);text-decoration:none;font-size:.8rem;font-weight:500;transition:all .2s;border-left:3px solid transparent}
+    .ebook-nav a:hover,.ebook-nav a.active{color:#fff;background:rgba(255,255,255,.04);border-left-color:var(--gold)}
+    .ebook-nav a .nn{font-size:.62rem;font-weight:700;color:var(--gold);min-width:20px;opacity:.55;flex-shrink:0}
+    .ebook-nav .sub a{padding-left:2.6rem;font-size:.76rem;color:rgba(255,255,255,.35)}
+
+    .nav-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+    .nav-ov.show{opacity:1;pointer-events:auto}
+
+    .nav-tog{
+      position:fixed;top:.8rem;left:.8rem;z-index:101;width:44px;height:44px;border-radius:12px;
+      background:var(--deep);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;
+      justify-content:center;font-size:1rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all .3s;
+    }
+    .nav-tog:hover{background:var(--p6);transform:scale(1.06)}
+
+    .prog-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--gold),var(--p4));z-index:200;transition:width .1s linear}
+
+    /* ===== PAGE ===== */
+    .page{max-width:740px;margin:0 auto;padding:2.5rem 1.5rem;min-height:100vh}
+
+    /* ===== COVER ===== */
+    .pcvr{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden;padding:2rem 1rem}
+    .pcvr::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(109,40,217,.1),transparent 70%);border-radius:50%;pointer-events:none}
+    .pcvr::after{content:"";position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,217,102,.12),transparent 70%);border-radius:50%;pointer-events:none}
+    .cvr-b{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--p1),var(--g1));padding:6px 16px;border-radius:100px;font-size:.7rem;font-weight:700;color:var(--p6);text-transform:uppercase;letter-spacing:2px;margin-bottom:1.5rem;border:1px solid rgba(109,40,217,.08)}
+    .cvr-t{font-size:clamp(2.4rem,8vw,4.2rem);font-weight:800;line-height:1.05;background:linear-gradient(135deg,var(--deep),var(--p6),var(--gdk));background-clip:text;-webkit-background-clip:text;color:transparent;margin-bottom:.5rem}
+    .cvr-s{font-size:clamp(1rem,3vw,1.2rem);color:var(--mt);font-weight:500;margin-bottom:.3rem}
+    .cvr-e{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.85rem,2.5vw,1rem);color:var(--p4);margin-bottom:1.8rem}
+    .cvr-ln{width:50px;height:3px;background:linear-gradient(90deg,var(--gold),var(--p4));border-radius:4px;margin:1.5rem auto}
+    .cvr-m{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;justify-content:center;margin-bottom:1.8rem}
+    .cvr-m span{display:flex;align-items:center;gap:5px;font-size:.8rem;color:var(--mt)}
+    .cvr-m span i{color:var(--p6);font-size:.75rem}
+    .cvr-o{background:var(--deep);color:#fff;padding:.6rem 1.5rem;border-radius:100px;font-size:.8rem;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+    .cvr-o i{color:var(--gold)}
+    .pgn{text-align:center;font-size:.7rem;color:var(--mt);margin-top:2rem;font-weight:600;letter-spacing:1px}
+
+    /* ===== CHAPTER SPLASH ===== */
+    .chs{display:flex;flex-direction:column;justify-content:center;min-height:100vh;min-height:100dvh;text-align:center;position:relative;padding:2rem 1rem}
+    .chn{font-size:clamp(4rem,15vw,6rem);font-weight:800;line-height:1;margin-bottom:.6rem;background:linear-gradient(135deg,rgba(109,40,217,.12),rgba(255,217,102,.15));background-clip:text;-webkit-background-clip:text;color:transparent;font-family:'Plus Jakarta Sans',sans-serif}
+    .cht{font-size:clamp(1.6rem,5vw,2.8rem);font-weight:800;color:var(--p9);margin-bottom:.7rem}
+    .chd{font-size:clamp(.9rem,2.5vw,1.05rem);color:var(--mt);max-width:480px;margin:0 auto}
+    .chl{width:36px;height:3px;background:var(--gold);border-radius:4px;margin:1.2rem auto 0}
+
+    /* ===== CONTENT ELEMENTS ===== */
+    .cs{margin-bottom:1.8rem}
+    h2.sh{font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:800;color:var(--p9);margin-bottom:.7rem;display:flex;align-items:center;gap:9px}
+    h2.sh .hi{width:36px;height:36px;min-width:36px;border-radius:10px;background:linear-gradient(135deg,var(--p6),var(--p4));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem}
+    h3.subh{font-size:clamp(1rem,3vw,1.15rem);font-weight:700;color:var(--p7);margin:1.2rem 0 .4rem}
+    p{margin-bottom:.7rem}
+    .lead{font-size:clamp(.95rem,2.5vw,1.08rem);color:var(--deep);font-weight:500}
+
+    ul.cl{margin:.5rem 0 .8rem 0;padding-left:0;list-style:none}
+    ul.cl li{padding:.35rem 0 .35rem 1.6rem;position:relative;line-height:1.7}
+    ul.cl li::before{content:"";position:absolute;left:0;top:.8rem;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gdk));box-shadow:0 0 0 3px rgba(255,217,102,.18)}
+    ul.cl li strong{color:var(--deep)}
+
+    ol.nol{margin:.5rem 0 .8rem 0;padding-left:0;list-style:none;counter-reset:ns}
+    ol.nol li{padding:.45rem 0 .45rem 2.3rem;position:relative;line-height:1.7;counter-increment:ns}
+    ol.nol li::before{content:counter(ns);position:absolute;left:0;top:.4rem;width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--p6),var(--p4));color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+    /* Boxes */
+    .box{border-radius:.9rem;padding:1rem 1.3rem;margin:1rem 0;border-left:4px solid}
+    .box p:last-child{margin-bottom:0}
+    .bp{background:var(--p1);border-color:var(--p6)}.bp .bl{color:var(--p6)}
+    .bg{background:var(--g1);border-color:var(--gdk)}.bg .bl{color:var(--gdk)}
+    .bgr{background:var(--gr1);border-color:var(--gr6)}.bgr .bl{color:var(--gr6)}
+    .br{background:var(--rd1);border-color:var(--rd5)}.br .bl{color:var(--rd5)}
+    .bb{background:var(--bl1);border-color:var(--bl5)}.bb .bl{color:var(--bl5)}
+    .bo{background:var(--or1);border-color:var(--or5)}.bo .bl{color:var(--or5)}
+    .bl-class{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.25rem}
+
+    /* Tip */
+    .tip{background:var(--w);border:1.5px solid var(--bd);border-radius:.9rem;padding:1rem 1.2rem;margin:1rem 0;display:flex;gap:10px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.02)}
+    .tip .ti{width:32px;height:32px;min-width:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem}
+    .tip .ti.p{background:var(--p1);color:var(--p6)}
+    .tip .ti.g{background:var(--g1);color:var(--gdk)}
+    .tip .ti.gr{background:var(--gr1);color:var(--gr6)}
+    .tip .tc{flex:1}
+    .tip .tc strong{display:block;margin-bottom:.1rem;color:var(--deep);font-size:.88rem}
+    .tip .tc p{font-size:.86rem;margin-bottom:0}
+
+    /* Practice */
+    .prac{background:linear-gradient(135deg,var(--p1),var(--g1));border-radius:1rem;padding:1.2rem 1.4rem;margin:1.2rem 0;border:1.5px dashed var(--p4)}
+    .prac .pl{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--p6);margin-bottom:.4rem}
+    .prac h4{font-size:1rem;margin-bottom:.4rem}
+    .prac p{font-size:.88rem}
+    .prac p:last-child{margin-bottom:0}
+
+    /* Prompt block */
+    .prmp{background:#1E1E2E;color:#CDD6F4;border-radius:.9rem;padding:1rem 1.2rem;margin:1rem 0;font-family:'Courier New',monospace;font-size:clamp(.75rem,2.2vw,.86rem);line-height:1.9;position:relative;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+    .prmp .prl{position:absolute;top:-9px;left:14px;background:var(--p6);color:#fff;padding:2px 10px;border-radius:5px;font-size:.6rem;font-weight:700;letter-spacing:1px;font-family:'Inter',sans-serif}
+    .prmp .hl{color:var(--gold);font-weight:700}
+    .prmp .hlp{color:var(--p4);font-weight:700}
+    .prmp .hlg{color:var(--gr6);font-weight:700}
+
+    /* Table */
+    .tbl-wrap{overflow-x:auto;margin:1rem 0;-webkit-overflow-scrolling:touch;border-radius:.9rem;border:1px solid var(--bd)}
+    .ctbl{width:100%;border-collapse:collapse;min-width:460px}
+    .ctbl th{background:var(--deep);color:#fff;padding:.7rem .9rem;font-size:.78rem;font-weight:700;text-align:left;white-space:nowrap}
+    .ctbl td{padding:.6rem .9rem;font-size:.84rem;border-bottom:1px solid var(--bd);background:var(--w);line-height:1.6}
+    .ctbl tr:last-child td{border-bottom:none}
+    .ctbl tr:nth-child(even) td{background:#FAFAF7}
+    .ctbl td strong{color:var(--deep)}
+
+    /* Two col */
+    .tc2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
+    .cc{background:var(--w);border-radius:.9rem;padding:1rem;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(0,0,0,.02)}
+    .cc h4{font-size:.9rem;margin-bottom:.3rem}
+    .cc p{font-size:.83rem;color:var(--body);margin-bottom:0}
+
+    /* Three col */
+    .tc3{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1rem 0}
+    .tc3 .cc{text-align:center;padding:1rem .7rem}
+    .tc3 .cc i{font-size:1.5rem;margin-bottom:.4rem;display:block}
+
+    /* Swatches */
+    .swr{display:flex;gap:6px;flex-wrap:wrap;margin:.6rem 0}
+    .sw{width:48px;height:48px;border-radius:12px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;font-size:.55rem;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);box-shadow:0 3px 10px -3px rgba(0,0,0,.15)}
+
+    /* Color wheel */
+    .cwh{width:200px;height:200px;border-radius:50%;background:conic-gradient(#EF4444,#F97316,#EAB308,#22C55E,#06B6D4,#3B82F6,#8B5CF6,#EC4899,#EF4444);margin:1.2rem auto;position:relative;box-shadow:0 8px 25px -8px rgba(0,0,0,.2)}
+    .cwh::after{content:"Roda Warna";position:absolute;inset:32px;background:var(--w);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(.7rem,2vw,.82rem);color:var(--deep)}
+
+    /* Sep */
+    .sep{width:100%;height:1px;background:var(--bd);margin:1.8rem 0}
+    .sepd{display:flex;align-items:center;justify-content:center;gap:8px;margin:1.8rem 0;color:var(--mt);font-size:.6rem}
+    .sepd::before,.sepd::after{content:"";flex:1;height:1px;background:var(--bd)}
+
+    blockquote{border-left:3px solid var(--gold);padding:.7rem 1.1rem;margin:1rem 0;background:var(--g1);border-radius:0 .8rem .8rem 0;font-style:italic;color:var(--deep);font-size:.92rem}
+
+    /* TOC */
+    .tl{list-style:none;padding:0;margin:1.2rem 0}
+    .tl li{border-bottom:1px dashed var(--bd)}
+    .tl a{display:flex;align-items:center;padding:.65rem 0;text-decoration:none;color:var(--deep);font-weight:600;font-size:.88rem;transition:all .2s;gap:6px}
+    .tl a:hover{color:var(--p6);padding-left:.3rem}
+    .tl .td{flex:1;border-bottom:1px dotted var(--bd);min-width:15px;align-self:flex-end;margin-bottom:5px}
+    .tl .tp{font-size:.72rem;color:var(--mt);font-weight:600;min-width:16px;text-align:right}
+    .tl .sub a{font-weight:400;font-size:.82rem;color:var(--body);padding-left:1.3rem}
+
+    /* Comparison */
+    .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
+
+    /* Example block */
+    .exbl{background:var(--w);border:1px solid var(--bd);border-radius:.9rem;padding:1rem 1.2rem;margin:.8rem 0}
+    .exbl .exl{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--p6);margin-bottom:.3rem}
+    .exbl p{font-size:.88rem;margin-bottom:.3rem}
+    .exbl p:last-child{margin-bottom:0}
+
+    /* Checklist */
+    .chk{display:grid;grid-template-columns:1fr 1fr;gap:.4rem .8rem;margin:.5rem 0}
+    .chk span{display:flex;align-items:flex-start;gap:6px;font-size:.88rem}
+    .chk span i{color:var(--gr6);margin-top:4px;min-width:14px;font-size:.75rem}
+
+    /* Footer */
+    .eftr{text-align:center;padding:2rem 1.5rem;color:var(--mt);font-size:.75rem;border-top:1px solid var(--bd);margin-top:1rem}
+    .eftr p:first-child{font-weight:600;color:var(--deep);margin-bottom:.2rem}
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){
+      .page{padding:2rem 1.2rem}
+      .tc2{grid-template-columns:1fr}
+      .tc3{grid-template-columns:1fr 1fr}
+      .chk{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      html{font-size:15px}
+      .page{padding:1.5rem 1rem}
+      .tc3{grid-template-columns:1fr}
+      .cmp{grid-template-columns:1fr}
+      .cwh{width:160px;height:160px}
+      .cwh::after{inset:26px;font-size:.65rem}
+      .sw{width:40px;height:40px;font-size:.5rem;border-radius:10px}
+      .prmp{padding:.8rem;font-size:.72rem}
+      .prmp .prl{font-size:.55rem;top:-8px;left:10px;padding:1px 8px}
+      .box{padding:.8rem 1rem}
+      .tip{padding:.8rem 1rem;gap:8px}
+      .tip .ti{width:28px;height:28px;min-width:28px;font-size:.7rem;border-radius:6px}
+      .ebook-nav{width:260px}
+    }
+    @media(max-width:360px){
+      html{font-size:14px}
+      .cvr-m{flex-direction:column;align-items:center}
+    }
+
+    /* Print */
+    @media print{
+      .ebook-nav,.nav-ov,.nav-tog,.prog-bar{display:none!important}
+      .page{max-width:100%;padding:1rem;font-size:10pt}
+      body{background:#fff}
+      .box,.tip,.prac,.cc,.exbl{box-shadow:none;break-inside:avoid}
+      .chs{min-height:auto;padding:1.5rem 0}
+      .pcvr{min-height:auto;padding:1.5rem 0}
+    }
+  </style>
+</head>
+<body>
+
+<div class="prog-bar" id="progBar"></div>
+<button class="nav-tog" id="navTog" aria-label="Menu"><i class="fas fa-bars"></i></button>
+
+<nav class="ebook-nav" id="eNav">
+  <div class="nh"><h4><i class="fas fa-book-open"></i> Buku Materi</h4><p>Canva AI Camp 2026</p></div>
+  <a href="#cover"><span class="nn">i</span> Cover</a>
+  <a href="#toc"><span class="nn">ii</span> Daftar Isi</a>
+  <div class="nsep"></div>
+  <a href="#b1"><span class="nn">01</span> Mengenal Desain Digital</a>
+  <a href="#b2"><span class="nn">02</span> Teori Warna</a>
+  <a href="#b3"><span class="nn">03</span> Tipografi</a>
+  <a href="#b4"><span class="nn">04</span> Mengenal AI & Etikanya</a>
+  <a href="#b5"><span class="nn">05</span> Mengenal Canva</a>
+  <a href="#b6"><span class="nn">06</span> Fitur AI di Canva</a>
+  <div class="nsep"></div>
+  <a href="#b6b" class="sub"><span class="nn">6.1</span> Prompt Engineering</a>
+  <div class="nsep"></div>
+  <a href="#b7"><span class="nn">07</span> Membuat Poster</a>
+  <a href="#b8"><span class="nn">08</span> Membuat Infografis</a>
+  <a href="#b9"><span class="nn">09</span> Konten Media Sosial</a>
+  <a href="#b10"><span class="nn">10</span> Presentasi Percaya Diri</a>
+  <div class="nsep"></div>
+  <a href="#tutup"><span class="nn">✦</span> Penutup</a>
+</nav>
+<div class="nav-ov" id="navOv"></div>
+
+<!-- ==================== COVER ==================== -->
+<div class="page pcvr" id="cover">
+  <div class="cvr-b"><i class="fas fa-book"></i> Buku Materi Peserta</div>
+  <h1 class="cvr-t">Canva AI Camp<br>2026</h1>
+  <p class="cvr-s">Buku Panduan Materi Lengkap</p>
+  <p class="cvr-e">Desain Digital, AI Generatif & Kreativitas</p>
+  <div class="cvr-ln"></div>
+  <div class="cvr-m">
+    <span><i class="fas fa-calendar-alt"></i> 10–12 Juli 2026</span>
+    <span><i class="fas fa-map-marker-alt"></i> Perpusda Banyuwangi</span>
+    <span><i class="fas fa-child"></i> Pelajar SD & SMP</span>
+  </div>
+  <div class="cvr-o"><i class="fas fa-landmark"></i> Perpustakaan Daerah Kab. Banyuwangi</div>
+  <div class="pgn">i</div>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="page" id="toc">
+  <div style="text-align:center;margin-bottom:.6rem">
+    <p style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--p4)">Daftar Isi</p>
+    <h2 style="font-size:clamp(1.6rem,5vw,2rem);font-weight:800;color:var(--p9);margin-top:.2rem">Isi Buku Materi</h2>
+  </div>
+  <ol class="tl">
+    <li><a href="#b1"><span>Bab 1 — Mengenal Desain Digital</span><span class="td"></span><span class="tp">01</span></a></li>
+    <li><a href="#b2"><span>Bab 2 — Teori Warna: Bermain dengan Warna</span><span class="td"></span><span class="tp">04</span></a></li>
+    <li><a href="#b3"><span>Bab 3 — Tipografi: Seni Memilih Huruf</span><span class="td"></span><span class="tp">08</span></a></li>
+    <li><a href="#b4"><span>Bab 4 — Mengenal AI & Etikanya</span><span class="td"></span><span class="tp">12</span></a></li>
+    <li><a href="#b5"><span>Bab 5 — Mengenal Canva & Canva Education</span><span class="td"></span><span class="tp">16</span></a></li>
+    <li><a href="#b6"><span>Bab 6 — Fitur AI di Canva</span><span class="td"></span><span class="tp">20</span></a></li>
+    <li class="sub"><a href="#b6b"><span>6.1 Prompt Engineering</span><span class="td"></span><span class="tp">23</span></a></li>
+    <li><a href="#b7"><span>Bab 7 — Membuat Poster Digital</span><span class="td"></span><span class="tp">27</span></a></li>
+    <li><a href="#b8"><span>Bab 8 — Membuat Infografis</span><span class="td"></span><span class="tp">31</span></a></li>
+    <li><a href="#b9"><span>Bab 9 — Desain Konten Media Sosial</span><span class="td"></span><span class="tp">35</span></a></li>
+    <li><a href="#b10"><span>Bab 10 — Teknik Presentasi Percaya Diri</span><span class="td"></span><span class="tp">39</span></a></li>
+    <li><a href="#tutup"><span>Penutup</span><span class="td"></span><span class="tp">43</span></a></li>
+  </ol>
+  <div class="pgn">ii</div>
+</div>
+
+<!-- ==================== BAB 1 ==================== -->
+<div class="page chs" id="b1">
+  <div class="chn">01</div>
+  <h2 class="cht">Mengenal Desain Digital</h2>
+  <p class="chd">Apa itu desain? Mengapa penting? Dan apa saja elemen dasar yang wajib kamu ketahui sebelum mulai berkarya?</p>
+  <div class="chl"></div><div class="pgn">01</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead">Pernahkah kamu melihat poster yang langsung bikin tertarik? Atau konten Instagram yang bikin berhenti scroll? Itulah kekuatan <strong>desain digital</strong> — kemampuan menyusun elemen visual agar <em>bermakna, menarik, dan berfungsi</em>.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-pen-nib"></i></span> Apa Itu Desain?</h2>
+    <p><strong>Desain</strong> berasal dari bahasa Latin <em>designare</em> yang berarti "merencanakan". Dalam konteks visual, desain adalah proses <strong>mengatur elemen-elemen</strong> — gambar, teks, warna, bentuk — menjadi sebuah karya yang punya <strong>tujuan jelas</strong>.</p>
+    <p>Bayangkan kamu punya balok LEGO. Masing-masing balok adalah elemen desain. Desain adalah cara kamu <strong>menyusun balok-balok itu</strong> menjadi sesuatu yang bermakna — bukan sekadar menumpuknya asal-asalan. Ada niat, ada rencana, ada tujuan.</p>
+    <blockquote>"Desain bukan soal membuat sesuatu terlihat bagus. Desain soal membuat sesuatu <strong>berfungsi dengan baik</strong> dan <strong>berkomunikasi secara efektif</strong>." — Charles Eames</blockquote>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-shapes"></i></span> 5 Elemen Dasar Desain</h2>
+    <p>Semua karya desain — poster, logo, infografis, konten Instagram — tersusun dari 5 elemen dasar ini. Hafalkan ya, karena ini fondasi semua yang akan kita pelajari:</p>
+  </div>
+
+  <div class="tc2">
+    <div class="cc">
+      <h4>🎨 Garis (<em>Line</em>)</h4>
+      <p>Elemen paling sederhana. Garis bisa memisahkan area, menunjukkan arah mata, atau menciptakan bentuk. Garis tipis terkesan lembut dan elegan. Garis tebal terkesan tegas dan berani. Garis putus-putus terkesan dinamis. Garis lengkung terkesan ramah.</p>
+    </div>
+    <div class="cc">
+      <h4>⬜ Bentuk (<em>Shape</em>)</h4>
+      <p>Garis yang tertutup menjadi bentuk. <strong>Lingkaran</strong> terkesan ramah, menyatukan, tak berujung. <strong>Persegi/Persegi Panjang</strong> terkesan rapi, stabil, terstruktur. <strong>Segitiga</strong> terkesan dinamis, bergerak, berbahaya. Bentuk organik (tidak beraturan) terkesan alami.</p>
+    </div>
+    <div class="cc">
+      <h4>🔴 Warna (<em>Color</em>)</h4>
+      <p>Elemen paling kuat dalam mempengaruhi emosi. Warna bisa bikin orang merasa hangat, dingin, lapar, tenang, atau bersemangat — dalam hitungan milidetik, tanpa membaca satu kata pun. Akan dibahas lengkap di <strong>Bab 2</strong>!</p>
+    </div>
+    <div class="cc">
+      <h4>🔤 Teks (<em>Typography</em>)</h4>
+      <p>Teks bukan sekadar kata-kata. Jenis huruf (font), ukuran, ketebalan, dan jarak antar huruf bisa mengubah kesan seluruh desain. Font serif terkesan klasik. Sans-serif terkesan modern. Kita bahas tuntas di <strong>Bab 3</strong>!</p>
+    </div>
+  </div>
+
+  <div class="box bg">
+    <div class="bl">💡 Elemen ke-5: Ruang (<em>Space</em>)</div>
+    <p><strong>Ruang kosong</strong> (disebut <em>white space</em> atau <em>negative space</em>) adalah area yang sengaja dibiarkan tanpa elemen apapun. Banyak pemula merasa harus mengisi seluruh halaman — padahal ruang kosong justru membuat desain terlihat <strong>lebih profesional, lebih mudah dibaca, dan lebih "bernafas"</strong>. Contoh: halaman Google hanya berisi satu kotak pencarian di tengah ruang kosong yang sangat besar — dan itulah yang membuatnya ikonik.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-balance-scale"></i></span> 4 Prinsip Desain yang Wajib Diketahui</h2>
+    <p>Jika elemen adalah bahan-bahannya, maka <strong>prinsip desain</strong> adalah resepnya. Prinsip ini menentukan apakah desainmu terlihat "aneh" atau "wow":</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">1. Keseimbangan (<em>Balance</em>)</div>
+    <p>Elemen di sebelah kiri dan kanan harus terasa "seimbang". Ada 2 jenis:</p>
+    <p><strong>Simetris</strong> — elemen kiri-kanan sama persis, seperti cermin. Terkesan formal dan tenang. Contoh: logo sekolah.</p>
+    <p><strong>Asimetris</strong> — elemen berbeda tapi "berat visualnya" setara. Misalnya: gambar besar di kiri, teks kecil di kanan. Terkesan lebih modern dan dinamis.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">2. Kontras (<em>Contrast</em>)</div>
+    <p>Buat perbedaan yang <strong>jelas dan sengaja</strong> antar elemen. Tujuannya: membuat elemen penting menonjol dan desain tidak membosankan. Cara menciptakan kontras:</p>
+    <p>• Teks gelap di atas latar terang (atau sebaliknya)<br>• Elemen besar berdampingan dengan elemen kecil<br>• Font tebal berdampingan dengan font tipis<br>• Warna hangat berdampingan dengan warna dingin</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">3. Kesatuan (<em>Unity/Alignment</em>)</div>
+    <p>Semua elemen harus terasa "satu keluarga". Cara mencapainya: gunakan warna dan font yang <strong>konsisten</strong>, ratakan elemen pada garis yang sama (misalnya semua teks rata kiri dengan margin yang sama), dan gunakan style yang seragam untuk elemen sejenis.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">4. Penekanan (<em>Emphasis/Hierarchy</em>)</div>
+    <p>Tentukan: <strong>"Apa yang paling penting di desain ini?"</strong> Lalu buat elemen itu paling menonjol — dengan ukuran lebih besar, warna lebih kontras, atau posisi yang paling strategis (biasanya atas-kiri atau tengah, karena mata kita membaca dari situ).</p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan Mikro 1.1</div>
+    <h4>Cari & Analisis Desain!</h4>
+    <p>Ambil HP-mu, buka galeri atau Instagram. Cari <strong>3 gambar/poster</strong> yang menurutmu keren. Lalu untuk masing-masing, tulis:</p>
+    <p>1. Warna apa yang paling menonjol?<br>2. Bagaimana teksnya disusun (besar/kecil, atas/bawah)?<br>3. Apakah ada ruang kosong? Di mana?<br>4. Menurutmu, apa pesan utama desain itu?</p>
+    <p>Simpan hasilnya — kita akan bahas bersama di hari pertama camp!</p>
+  </div>
+
+  <div class="tip">
+    <div class="ti g"><i class="fas fa-lightbulb"></i></div>
+    <div class="tc"><strong>Pesan Penting</strong><p>Desain yang bagus bukan soal "seberapa bagus gambarnya", tapi soal <strong>"seberapa jelas pesan yang disampaikan"</strong>. Seorang desainer hebat adalah yang bisa membuat orang paham pesan dalam <strong>3 detik pertama</strong>.</p></div>
+  </div>
+  <div class="pgn">03</div>
+</div>
+
+<!-- ==================== BAB 2 ==================== -->
+<div class="page chs" id="b2">
+  <div class="chn">02</div>
+  <h2 class="cht">Teori Warna</h2>
+  <p class="chd">Bermain dengan warna: roda warna, kombinasi harmonis, dan psikologi warna untuk desain yang berbicara</p>
+  <div class="chl"></div><div class="pgn">04</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead">Warna adalah senjata paling ampuh seorang desainer. Warna bisa bikin orang <strong>sedih, senang, lapar, tenang, atau bahkan percaya</strong> — tanpa sepatah kata pun. Di bab ini, kamu akan belajar memahami warna seperti seorang desainer profesional.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-palette"></i></span> Roda Warna (<em>Color Wheel</em>)</h2>
+    <p>Semua warna di dunia bisa dilacak dari <strong>3 warna primer</strong>: Merah, Kuning, Biru. Dari ketiganya, lahir warna-warna lain:</p>
+    <div class="cwh"></div>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">3 Lapisan Warna</div>
+    <p><strong>Primer</strong> — Merah 🔴, Kuning 🟡, Biru 🔵. Warna dasar yang <strong>tidak bisa dibuat</strong> dari campuran warna lain. Semua warna bermula dari sini.</p>
+    <p><strong>Sekunder</strong> — Oranye 🟠 (merah+kuning), Hijau 🟢 (kuning+biru), Ungu 🟣 (merah+biru). Dibuat dengan mencampur 2 warna primer.</p>
+    <p><strong>Tersier</strong> — Merah-Oranye, Kuning-Hijau, Biru-Ungu, dan seterusnya. Dibuat dari campuran primer + sekunder yang bersebelahan di roda.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-sliders-h"></i></span> 3 Sifat Warna</h2>
+    <p>Setiap warna punya 3 dimensi yang bisa kamu ubah untuk menciptakan variasi:</p>
+  </div>
+
+  <div class="tc3">
+    <div class="cc">
+      <i class="fas fa-sun" style="color:var(--gdk)"></i>
+      <h4>Hue (Rona)</h4>
+      <p>"Nama" warnanya. Merah, biru, hijau — itulah hue. Ini dimensi yang paling dasar.</p>
+    </div>
+    <div class="cc">
+      <i class="fas fa-adjust" style="color:var(--p6)"></i>
+      <h4>Value (Nilai)</h4>
+      <p>Seberapa terang atau gelap suatu warna. Tambahkan putih → jadi lebih terang (tint). Tambahkan hitam → jadi lebih gelap (shade).</p>
+    </div>
+    <div class="cc">
+      <i class="fas fa-tint" style="color:var(--bl5)"></i>
+      <h4>Saturation (Kekuatan)</h4>
+      <p>Seberapa "kuat" atau "pucat" warnanya. Warna penuh = cerah dan mencolok. Warna rendah = lembut dan pastel.</p>
+    </div>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-swatchbook"></i></span> 5 Skema Kombinasi Warna Harmonis</h2>
+    <p>Memilih warna asal-asalan = desain berantakan. Gunakan salah satu skema ini:</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">1. Analogus — Warna Bersebelahan</div>
+    <p>Ambil 2–3 warna yang <strong>bersebelahan di roda warna</strong>. Hasilnya lembut, harmonis, dan nyaman dipandang. Cocok untuk desain yang ingin terasa tenang dan profesional.</p>
+    <div class="swr"><div class="sw" style="background:#3B82F6">Biru</div><div class="sw" style="background:#06B6D4">Cyan</div><div class="sw" style="background:#22C55E">Hijau</div></div>
+    <p><strong>Pakai untuk:</strong> Presentasi sekolah, infografis edukasi, desain kesehatan.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">2. Komplemen — Warna Berlawanan</div>
+    <p>Ambil 2 warna yang <strong>berhadapan di roda warna</strong>. Hasilnya sangat kontras dan mencolok. Satu warna jadi fokus, satunya jadi aksen.</p>
+    <div class="swr"><div class="sw" style="background:#3B82F6">Biru</div><div class="sw" style="background:#F97316">Oranye</div></div>
+    <p><strong>Pakai untuk:</strong> Poster event, CTA (tombol aksi), highlight informasi penting.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">3. Triadik — Segitiga Sama Sisi</div>
+    <p>Ambil 3 warna yang membentuk <strong>segitiga</strong> di roda warna. Hasilnya ceria, energik, dan penuh warna. Gunakan satu warna sebagai dominan, dua lainnya sebagai aksen.</p>
+    <div class="swr"><div class="sw" style="background:#EF4444">Merah</div><div class="sw" style="background:#EAB308">Kuning</div><div class="sw" style="background:#3B82F6">Biru</div></div>
+    <p><strong>Pakai untuk:</strong> Poster anak-anak, event festival, konten yang harus menarik perhatian cepat.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">4. Monokromatik — Satu Warna, Banyak Variasi</div>
+    <p>Pakai <strong>satu hue saja</strong>, tapi variasikan value dan saturation-nya. Hasilnya sangat elegan, bersih, dan "premium".</p>
+    <div class="swr"><div class="sw" style="background:#BFDBFE;color:#1E3A5F">Muda</div><div class="sw" style="background:#3B82F6">Sedang</div><div class="sw" style="background:#1E3A8A">Tua</div></div>
+    <p><strong>Pakai untuk:</strong> Branding mewah, presentasi formal, desain minimalis.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">5. Split-Komplemen — Komplemen yang Lebih Lembut</div>
+    <p>Ambil warna A, lalu 2 warna yang <strong>bersebelahan dengan lawan A</strong>. Misalnya: biru + kuning-hijau + oranye-kuning. Lebih kaya daripada komplemen biasa, tapi tidak se-"ribut" triadik.</p>
+    <div class="swr"><div class="sw" style="background:#3B82F6">Biru</div><div class="sw" style="background:#84CC16">Kuning-Hijau</div><div class="sw" style="background:#FB923C">Oranye-Kuning</div></div>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-brain"></i></span> Psikologi Warna</h2>
+    <p>Setiap warna memicu respons emosional yang bisa diprediksi. Inilah "bahasa rahasia" warna:</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Warna</th><th>Emosi / Kesan</th><th>Cocok Untuk</th><th>Hindari Untuk</th></tr></thead>
+      <tbody>
+        <tr><td><strong>🔴 Merah</strong></td><td>Berani, mendesak, bersemangat, berbahaya</td><td>Sale/diskon, peringatan, CTA tombol</td><td>Desain yang harus tenang</td></tr>
+        <tr><td><strong>🟠 Oranye</strong></td><td>Ceria, hangat, kreatif, playful</td><td>Event anak, makanan, aktivitas fun</td><td>Desain serius/formal</td></tr>
+        <tr><td><strong>🟡 Kuning</strong></td><td>Positif, cerah, perhatian, bahagia</td><td>Highlight, tips, peringatan ringan</td><td>Terlalu banyak = menyilaukan</td></tr>
+        <tr><td><strong>🟢 Hijau</strong></td><td>Alam, sehat, damai, pertumbuhan</td><td>Lingkungan, kesehatan, keamanan</td><td>Desain yang harus energik</td></tr>
+        <tr><td><strong>🔵 Biru</strong></td><td>Tenang, terpercaya, profesional, intelektual</td><td>Pendidikan, teknologi, institusi, keamanan</td><td>Desain makanan (biru = tidak enak)</td></tr>
+        <tr><td><strong>🟣 Ungu</strong></td><td>Kreatif, mewah, misterius, imajinatif</td><td>Seni, AI, produk premium, spiritual</td><td>Desain yang harus terasa ramah/down-to-earth</td></tr>
+        <tr><td><strong>🩷 Pink</strong></td><td>Lembut, manis, kasih sayang, playful</td><td>Produk anak perempuan, kecantikan, komunitas</td><td>Desain yang harus kuat/tegas</td></tr>
+        <tr><td><strong>⚫ Hitam</strong></td><td>Elegan, kuat, formal, berwibawa</td><td>Logo mewah, tipografi headline, background kontras</td><td>Background teks gelap (sulit dibaca)</td></tr>
+        <tr><td><strong>⚪ Putih</strong></td><td>Bersih, sederhana, transparan, ruang</td><td>Background utama, minimalis, kesehatan</td><td>Tidak boleh 100% putih di cetak (biasanya creamy)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box br">
+    <div class="bl">⚠️ Kesalahan Paling Sering Dilakukan</div>
+    <p><strong>Menggunakan terlalu banyak warna!</strong> Aturan emas: pilih <strong>maksimal 3–4 warna</strong> untuk satu desain — 1 warna dominan (60%), 1 warna sekunder (30%), 1 warna aksen (10%). Lebih dari itu = desain terlihat ramai, membingungkan, dan tidak profesional. Ingat: <strong>warna yang sedikit tapi tepat, jauh lebih kuat daripada banyak warna yang asal-asalan</strong>.</p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan 2.1</div>
+    <h4>Buat Palet Warna Tematik</h4>
+    <p>Pilih satu tema berikut: <strong>"Pantai", "Hutan Hujan", "Kota Malam", "Sekolah Impian", "Festival Budaya"</strong>.</p>
+    <p>Lalu: 1) Pilih 3–4 warna utama. 2) Tentukan mana yang dominan, sekunder, aksen. 3) Tulis skema kombinasi apa yang kamu pakai (analogus? komplemen?). 4) Jelaskan <strong>mengapa</strong> warna-warna itu cocok untuk temanya.</p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan 2.2</div>
+    <h4>Eksperimen di Canva</h4>
+    <p>Buka Canva → buat desain baru (Poster) → coba ganti warna background dan teks menggunakan skema yang berbeda-beda. Lihat sendiri bagaimana perubahan warna mengubah <strong>seluruh nuansa</strong> desain yang sama!</p>
+  </div>
+  <div class="pgn">07</div>
+</div>
+
+<!-- ==================== BAB 3 ==================== -->
+<div class="page chs" id="b3">
+  <div class="chn">03</div>
+  <h2 class="cht">Tipografi</h2>
+  <p class="chd">Seni memilih dan mengatur huruf — karena teks yang baik bukan cuma bisa dibaca, tapi juga <em>terasa sesuai</em></p>
+  <div class="chl"></div><div class="pgn">08</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead">Tipografi adalah seni memilih <strong>jenis huruf (font)</strong>, mengatur <strong>ukuran</strong>, <strong>ketebalan</strong>, dan <strong>jarak</strong> agar teks tidak hanya bisa dibaca — tapi juga <strong>terasa sesuai dengan pesan yang disampaikan</strong>. Font yang salah bisa menghancurkan desain yang sebenarnya bagus.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-font"></i></span> 4 Kategori Font Utama</h2>
+  </div>
+
+  <div class="tc2">
+    <div class="cc">
+      <h4 style="font-family:serif;font-size:1.3rem">Aa Serif</h4>
+      <p style="font-family:serif;font-size:1rem;margin-bottom:.4rem">Aa Bb Cc 123</p>
+      <p>Punya "kaki" (<em>serif</em>) di ujung huruf. Terkesan <strong>klasik, formal, terpercaya, dan berwibawa</strong>. Digunakan di koran, buku, dan dokumen resmi. Contoh: Times New Roman, Georgia, Playfair Display.</p>
+    </div>
+    <div class="cc">
+      <h4 style="font-size:1.3rem">Aa Sans-Serif</h4>
+      <p style="font-size:1rem;margin-bottom:.4rem">Aa Bb Cc 123</p>
+      <p>Tanpa "kaki". Terkesan <strong>modern, bersih, dan mudah dibaca di layar</strong>. Ini font paling populer di dunia digital. Contoh: Inter, Arial, Helvetica, Plus Jakarta Sans.</p>
+    </div>
+    <div class="cc">
+      <h4 style="font-family:cursive;font-size:1.3rem">Aa Script</h4>
+      <p style="font-family:cursive;font-size:1rem;margin-bottom:.4rem">Aa Bb Cc</p>
+      <p>Menyerupai tulisan tangan. Terkesan <strong>romantis, personal, playful, dan feminin</strong>. <strong>Jangan pernah</strong> pakai untuk teks panjang — sangat sulit dibaca! Cocok untuk aksen/dekorasi saja.</p>
+    </div>
+    <div class="cc">
+      <h4 style="letter-spacing:3px;font-size:1.3rem">DISPLAY</h4>
+      <p style="letter-spacing:2px;font-size:1rem;margin-bottom:.4rem">Aa Bb Cc</p>
+      <p>Font unik, eye-catching, dan penuh karakter. Dipakai <strong>HANYA untuk judul besar</strong>. Tidak cocok untuk paragraf karena akan sangat menyulitkan pembaca. Contoh: font dengan efek 3D, neon, outline, dll.</p>
+    </div>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-layer-group"></i></span> Hierarki Teks (<em>Type Hierarchy</em>)</h2>
+    <p>Hierarki teks adalah cara mengatur teks agar mata pembaca tahu: <strong>"Mana yang paling penting, mana yang sekadar pelengkap."</strong> Tanpa hierarki, semua teks terlihat sama pentingnya — dan akhirnya tidak ada yang penting.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">3 Level Hierarki</div>
+    <p><strong>Level 1 — Heading (Judul Utama)</strong><br>Fungsi: menarik perhatian pertama kali. Ukuran paling besar, font paling tebal. Ini hal pertama yang dibaca orang. Contoh: "FESTIVAL BUDAYA 2026" dengan ukuran 48px, bold.</p>
+    <p><strong>Level 2 — Subheading (Sub-Judul)</strong><br>Fungsi: menjelaskan konteks judul. Ukuran sedang. Contoh: "Merayakan Kebersamaan melalui Seni & Musik" dengan ukuran 24px, semi-bold.</p>
+    <p><strong>Level 3 — Body Text (Isi)</strong><br>Fungsi: menyampaikan informasi detail. Ukuran standar (14–18px), font yang mudah dibaca. Contoh: "Acara ini akan diadakan pada tanggal..." dengan ukuran 16px, regular.</p>
+  </div>
+
+  <div class="box bp">
+    <div class="bl">📐 Aturan Emas Hierarki</div>
+    <p>Judul harus <strong>minimal 2x lebih besar</strong> dari isi teks. Kalau isi 14px, judul minimal 28px. Subheading di antara keduanya. Jika perbedaan ukuran kurang dari 2x, orang akan bingung mana judul mana isi — dan desainmu terlihat "datar".</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-ruler-combined"></i></span> Jarak & Spasi dalam Teks</h2>
+    <p>Jarak itu sama pentingnya dengan ukuran. Teks yang rapat = sesak dan menyiksa mata. Teks yang terlalu renggang = terputus-putus dan sulit diikuti.</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Properti</th><th>Apa Itu</th><th>Nilai Ideal</th><th>Kalau Salah</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Line Height</strong></td><td>Jarak antar baris</td><td>1.5 – 1.8x ukuran font</td><td>Rapat = susah dibaca. Terlalu jauh = terputus.</td></tr>
+        <tr><td><strong>Letter Spacing</strong></td><td>Jarak antar huruf</td><td>Normal (0) untuk body, sedikit lebar untuk judul</td><td>Terlalu rapat = huruf bertumpuk. Terlalu lebar = kata terpencar.</td></tr>
+        <tr><td><strong>Paragraph Spacing</strong></td><td>Jarak antar paragraf</td><td>Setara 1x line height</td><td>Tidak ada jarak = paragraf menyatu, membingungkan.</td></tr>
+        <tr><td><strong>Margin</strong></td><td>Jarak teks ke tepi halaman</td><td>Minimal 20px dari setiap sisi</td><td>Teks menempel tepi = terasa sesak dan tidak profesional.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-ban"></i></span> 7 Kesalahan Tipografi yang Harus Dihindari</h2>
+  </div>
+
+  <ol class="nol">
+    <li><strong>Terlalu banyak font</strong> — Maksimal 2–3 font per desain. Lebih dari itu = berantakan dan tidak konsisten. Biasanya: 1 font untuk judul, 1 untuk isi. Cukup.</li>
+    <li><strong>Font sulit dibaca</strong> — Font yang terlalu dekoratif HANYA untuk judul besar. Jangan pernah pakai font script atau display untuk paragraf.</li>
+    <li><strong>Ukuran terlalu kecil</strong> — Di HP, teks di bawah 12px sangat susah dibaca. Usahakan body text minimal 14px, idealnya 16px.</li>
+    <li><strong>Kontras rendah</strong> — Teks abu-abu muda di atas background putih = tidak bisa dibaca. Pastikan ada <strong>kontras yang kuat</strong> antara teks dan latar. Tes dengan mengerlingkan mata (<em>squint test</em>).</li>
+    <li><strong>Paragraf terlalu lebar</strong> — Baris yang terlalu panjang membuat mata lelah mencari baris berikutnya. Maksimal <strong>65–75 karakter per baris</strong>.</li>
+    <li><strong>Rata kanan (<em>justified</em>) di web</strong> — Rata kanan-kiri membuat jarak antar kata tidak merata (ada "lubang" besar). Lebih baik rata kiri saja.</li>
+    <li><strong>Mix bold/italic berlebihan</strong> — Kalau semuanya bold, tidak ada yang bold. Kalau semuanya italic, tidak ada yang italic. Gunakan secara <strong>strategis</strong> untuk menandai hal yang benar-benar penting.</li>
+  </ol>
+
+  <div class="tip">
+    <div class="ti p"><i class="fas fa-magic"></i></div>
+    <div class="tc"><strong>Trik Pemula: Font Pairing</strong><p>Gabungkan <strong>1 font Serif + 1 font Sans-Serif</strong>. Contoh: Playfair Display (judul, serif) + Inter (isi, sans-serif). Kombinasi ini hampir <strong>selalu berhasil</strong> karena kontrasnya jelas tapi tidak bertentangan.</p></div>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan 3.1</div>
+    <h4>Eksperimen 5 Font!</h4>
+    <p>Buka Canva → buat desain Poster → ketik kalimat yang sama: <strong>"Selamat Datang di Perpustakaan"</strong>. Ganti font-nya menjadi 5 font berbeda. Untuk masing-masing, tulis: <em>Kesan apa yang muncul? Cocok untuk apa? Apakah mudah dibaca dari jauh?</em></p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan 3.2</div>
+    <h4>Buat Hierarki!</h4>
+    <p>Dengan kalimat yang sama, buat 3 versi: (A) Semua teks ukuran sama, (B) Dengan hierarki tapi perbedaan ukuran kurang dari 2x, (C) Dengan hierarki yang benar (judul 2x lebih besar dari isi). Bandingkan — versi mana yang paling enak dibaca?</p>
+  </div>
+  <div class="pgn">11</div>
+</div>
+
+<!-- ==================== BAB 4 ==================== -->
+<div class="page chs" id="b4">
+  <div class="chn">04</div>
+  <h2 class="cht">Mengenal AI & Etikanya</h2>
+  <p class="chd">Apa itu kecerdasan buatan? Bagaimana cara kerjanya? Dan aturan etis yang wajib kamu patuhi</p>
+  <div class="chl"></div><div class="pgn">12</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead"><strong>AI</strong> (Artificial Intelligence / Kecerdasan Buatan) sudah di sekitar kita — dari rekomendasi YouTube, filter Snapchat, Google Translate, sampai asisten suara. Di camp ini, kita belajar menggunakan AI sebagai <strong>alat kreativitas</strong>, bukan pengganti kreativitas.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-robot"></i></span> Apa Itu AI? (Penjelasan Sederhana)</h2>
+    <p>AI adalah <strong>program komputer yang bisa "belajar" dari data</strong> dan membuat keputusan atau menciptakan sesuatu yang biasanya membutuhkan kecerdasan manusia.</p>
+    <p>Bayangkan kamu mengajari anak kecil mengenali kucing. Kamu tunjukkan 100 foto kucing, lalu 100 foto bukan kucing. Lama-lama, anak itu bisa membedakan kucing dan bukan kucing — meskipun kamu belum pernah tunjukkan kucing itu sebelumnya. <strong>AI bekerja dengan prinsip yang sama</strong>, tapi dengan ribuan bahkan jutaan data.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-magic"></i></span> Apa Itu AI Generatif?</h2>
+    <p>AI Generatif adalah jenis AI yang bisa <strong>menciptakan konten BARU</strong> — bukan sekadar mengenali atau mengklasifikasikan. Ia bisa membuat gambar, menulis teks, membuat musik, mengedit video — berdasarkan <strong>perintah</strong> yang kita berikan (perintah ini disebut <strong>prompt</strong>).</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">Analogi Mudah</div>
+    <p>AI Generatif itu seperti <strong>seorang asisten seniman</strong>. Bayangkan kamu adalah <strong>direktur</strong>, dan AI adalah <strong>pelukis</strong>. Kamu yang punya visi dan ide. Kamu yang memberi arahan: "Gambarlah seekor kucing di taman bunga, gaya watercolor." AI yang mengeksekusi. Tanpa arahanmu, AI tidak bisa berbuat apa-apa. <strong>Kamu tetap yang berkuasa.</strong></p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-wand-magic-sparkles"></i></span> Contoh AI Generatif di Canva</h2>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Fitur</th><th>Fungsi</th><th>Kapan Dipakai</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Magic Write</strong></td><td>AI membantu menulis teks: slogan, paragraf, caption, ide</td><td>Saat kamu bingung menulis teks yang menarik</td></tr>
+        <tr><td><strong>Magic Design</strong></td><td>AI membuat layout desain utuh dari deskripsi singkat</td><td>Saat butuh inspirasi layout awal dengan cepat</td></tr>
+        <tr><td><strong>Text to Image</strong></td><td>Mengubah teks/deskripsi menjadi gambar</td><td>Saat butuh gambar unik yang tidak ada di galeri</td></tr>
+        <tr><td><strong>Magic Edit</strong></td><td>Mengubah bagian tertentu dari gambar berdasarkan perintah</td><td>Saat ingin mengubah atau menambah elemen di foto</td></tr>
+        <tr><td><strong>Magic Expand</strong></td><td>Memperbesar gambar dengan AI mengisi bagian yang ditambahkan</td><td>Saat gambar terlalu kecil untuk layout</td></tr>
+        <tr><td><strong>Magic Eraser</strong></td><td>Menghapus objek tidak diinginkan dari foto</td><td>Saat ada objek mengganggu di latar belakang</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-shield-alt"></i></span> 5 Aturan Etika AI yang Wajib Dipatuhi</h2>
+    <p>AI sangat powerful, dan dengan kekuatan besar datanglah tanggung jawab besar. Ini <strong>bukan aturan sepele</strong> — ini menentukan apakah kamu menggunakan AI dengan benar atau salah:</p>
+  </div>
+
+  <ol class="nol">
+    <li><strong>Jangan klaim karya AI 100% sebagai karyamu.</strong> AI membantu, tapi kamu lah pemilik ide. Selalu jujur tentang keterlibatan AI. Bukan berarti karyamu "kurang berharga" — justru menunjukkan integritas.</li>
+    <li><strong>Jangan gunakan AI untuk menyesatkan.</strong>>Membuat gambar palsu yang seolah nyata (deepfake), menulis berita palsu, atau menipu orang — itu <strong>pelanggaran serius</strong>, baik secara etis maupun hukum.</li>
+    <li><strong>Hormati hak cipta.</strong> Jangan meniru gaya spesifik seniman hidup tanpa izin, lalu mengklaimnya orisinal. Itu sama dengan mencuri ide — meskipun AI yang "menggambar"nya.</li>
+    <li><strong>Gunakan AI untuk belajar, bukan jalan pintas.</strong> Menyuruh AI mengerjakan PR tanpa memahaminya = merugikan dirimu sendiri. AI = alat bantu belajar, bukan pengganti belajar.</li>
+    <li><strong>Pikirkan dampak sebelum publikasi.</strong> Tanyakan: "Apakah ini bisa melukai perasaan seseorang? Apakah ini menyesatkan? Apakah saya siap bertanggung jawab jika konten ini tersebar luas?"</li>
+  </ol>
+
+  <div class="box br">
+    <div class="bl">⚠️ Prinsip Utama</div>
+    <p><strong>AI adalah asisten, bukan pemimpin.</strong> Kualitas output AI sangat bergantung pada kualitas ide dan perintahmu. AI tanpa arahan manusia yang kreatif = output yang generik dan membosankan. <strong>Kreativitasmu tetap yang utama!</strong></p>
+  </div>
+
+  <div class="tip">
+    <div class="ti gr"><i class="fas fa-check-circle"></i></div>
+    <div class="tc"><strong>Checklist Etika Sebelum Publikasi</strong>
+    <p>✅ Apakah saya jujur tentang peran AI dalam karya ini?<br>✅ Apakah ada orang yang bisa dirugikan?<br>✅ Apakah saya memahami sepenuhnya konten yang dipublikasikan?<br>✅ Apakah ini sesuai aturan platform dan hukum?<br>✅ Apakah saya bangga jika karya ini dilihat guru/orang tua?</p></div>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Diskusi Kelompok</div>
+    <h4>Kasus: AI & Orisinalitas</h4>
+    <p>Sinta meminta AI menggambar "kucing di taman bunga sakura" dan hasilnya sangat bagus. Sinta mempostingnya di Instagram dengan caption "Karyaku!".<br><br>Diskusi: <strong>Apakah itu etis? Mengapa iya/mengapa tidak? Bagaimana seharusnya Sinta menuliskan caption-nya?</strong> Tidak ada jawaban salah — yang penting kamu berpikir kritis.</p>
+  </div>
+  <div class="pgn">15</div>
+</div>
+
+<!-- ==================== BAB 5 ==================== -->
+<div class="page chs" id="b5">
+  <div class="chn">05</div>
+  <h2 class="cht">Mengenal Canva</h2>
+  <p class="chd">Platform desain yang akan menjadi senjata utamamu selama camp — dan setelahnya</p>
+  <div class="chl"></div><div class="pgn">16</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead"><strong>Canva</strong> adalah platform desain berbasis web yang memungkinkan siapa saja — bahkan tanpa pengalaman desain — membuat karya visual yang profesional. Dengan akun <strong>Canva Education</strong> (gratis via belajar.id), kamu mendapat akses <strong>semua fitur premium</strong> tanpa bayar.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-th-large"></i></span> Tampilan Canva & Cara Navigasi</h2>
+    <p>Saat pertama kali membuka Canva, kamu akan melihat <strong>Homepage</strong>. Di sini kamu bisa: membuat desain baru, membuka desain lama, melihat template yang direkomendasikan, dan mengakses folder.</p>
+    <p>Saat kamu klik sebuah desain (atau buat desain baru), kamu masuk ke <strong>Editor</strong> — area kerja utama. Bagian-bagiannya:</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Area</th><th>Posisi</th><th>Isi</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Toolbar Atas</strong></td><td>Bar paling atas</td><td>File, Undo/Redo, Ubah Ukuran, Filter, Unduh, Bagikan, Lainnya</td></tr>
+        <tr><td><strong>Panel Kiri</strong></td><td>Sisi kiri</td><td>Elemen, Teks, Upload, Gambar, Audio, Video, Magic Studio (AI), Brand Kit, Folder</td></tr>
+        <tr><td><strong>Kanvas</strong></td><td>Area tengah</td><td>Tempat kamu menyusun dan mengedit desain. Ini "meja kerja"mu.</td></tr>
+        <tr><td><strong>Panel Kanan</strong></td><td>Sisi kanan (muncul saat perlu)</td><td>Pengaturan elemen yang sedang dipilih: posisi, ukuran, warna, efek, animasi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-puzzle-piece"></i></span> Komponen Utama di Editor</h2>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Komponen</th><th>Apa Itu</th><th>Tips Penggunaan</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Template</strong></td><td>Desain siap pakai yang bisa diedit sepenuhnya</td><td>Jangan cuma ganti teks! Ubah warna, ganti gambar, ubah layout agar terlihat orisinal</td></tr>
+        <tr><td><strong>Elemen</strong></td><td>Gambar, bentuk (lingkaran, persegi), garis, stiker, ilustrasi, ikon, chart</td><td>Gunakan "Frames" (bingkai) untuk memasang foto dengan rapi. Gunakan "Grids" untuk tata letak foto.</td></tr>
+        <tr><td><strong>Teks</strong></td><td>Menambahkan heading, subheading, body text</td><td>Klik ikon "T" di panel kiri. Pilih yang sesuai hierarki (Bab 3!).</td></tr>
+        <tr><td><strong>Upload</strong></td><td>Mengunggah foto/file dari HP atau komputer</td><td>Pastikan resolusi cukup. Untuk web, minimal 72 DPI. Untuk cetak, minimal 150 DPI.</td></tr>
+        <tr><td><strong>Background</strong></td><td>Mengubah latar belakang: warna solid, gradien, atau gambar</td><td>Gradien sering terlihat lebih "premium" daripada warna solid.</td></tr>
+        <tr><td><strong>Grup (Ctrl+G)</strong></td><td>Menggabungkan beberapa elemen jadi satu unit</td><td>Sangat berguna saat memindahkan blok elemen bersamaan tanpa berantakan.</td></tr>
+        <tr><td><strong>Layer</strong></td><td>Mengatur tumpukan elemen: mana di depan, mana di belakang</td><td>Ctrl+] = ke depan, Ctrl+[ = ke belakang. Penting saat elemen saling menutupi.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-graduation-cap"></i></span> Keunggulan Canva Education vs Gratis</h2>
+    <p>Dengan akun belajar.id, kamu mendapat akses yang jauh lebih lengkap:</p>
+  </div>
+
+  <div class="chk">
+    <span><i class="fas fa-check"></i> Ribuan template premium (biasanya berbayar)</span>
+    <span><i class="fas fa-check"></i> 100 juta+ foto, ilustrasi, video tanpa watermark</span>
+    <span><i class="fas fa-check"></i> Semua fitur Magic Studio (AI) aktif</span>
+    <span><i class="fas fa-check"></i> Brand Kit: simpan warna & font favorit</span>
+    <span><i class="fas fa-check"></i> Folder tanpa batas</span>
+    <span><i class="fas fa-check"></i> Unduh PNG transparan, PDF standar, MP4</span>
+    <span><i class="fas fa-check"></i> Resize magic: ubah ukuran desain sekali klik</span>
+    <span><i class="fas fa-check"></i> Background remover (hapus latar foto)</span>
+  </div>
+
+  <div class="box bgr">
+    <div class="bl">✅ Aktivasi Akun</div>
+    <p>Belum punya akun belajar.id? Jangan khawatir! Di hari pertama camp, tim kami akan membantu proses aktivasi. Siapkan: <strong>Nama lengkap, NISN, nama sekolah, dan tanggal lahir</strong>.</p>
+  </div>
+
+  <div class="tip">
+    <div class="ti p"><i class="fas fa-keyboard"></i></div>
+    <div class="tc"><strong>10 Shortcut Wajib Hafal</strong>
+    <p><strong>Ctrl+Z</strong> Undo &nbsp;|&nbsp; <strong>Ctrl+Shift+Z</strong> Redo &nbsp;|&nbsp; <strong>Ctrl+D</strong> Duplikat &nbsp;|&nbsp; <strong>Ctrl+G</strong> Grup &nbsp;|&nbsp; <strong>Ctrl+Shift+G</strong> Ungrup &nbsp;|&nbsp; <strong>Ctrl+C/V</strong> Copy/Paste &nbsp;|&nbsp; <strong>Ctrl+]</strong> Ke Depan &nbsp;|&nbsp; <strong>Ctrl+[</strong> Ke Belakang &nbsp;|&nbsp; <strong>Delete</strong> Hapus &nbsp;|&nbsp; <strong>Ctrl+S</strong> Simpan</p></div>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Eksplorasi 5.1</div>
+    <h4>Jelajahi Canva!</h4>
+    <p>Setelah akun aktif, luangkan 15 menit untuk: 1) Klik setiap tab di panel kiri dan lihat isinya. 2) Coba buka 3 template berbeda. 3) Klik setiap elemen di template dan perhatikan panel kanan yang muncul. 4) Coba semua shortcut di atas. 5) Buat desain kosong dan mainkan dengan bentuk & warna.</p>
+  </div>
+  <div class="pgn">19</div>
+</div>
+
+<!-- ==================== BAB 6 ==================== -->
+<div class="page chs" id="b6">
+  <div class="chn">06</div>
+  <h2 class="cht">Fitur AI di Canva</h2>
+  <p class="chd">Magic Write, Magic Design, Text to Image — panduan lengkap cara menggunakannya dengan tepat</p>
+  <div class="chl"></div><div class="pgn">20</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead>Sekarang masuk bagian paling seru! Canva punya sekumpulan fitur AI yang disebut <strong>Magic Studio</strong>. Kita pelajari satu per satu dengan detail — bukan cuma teori, tapi juga kapan dan bagaimana menggunakannya secara efektif.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-wand-magic-sparkles"></i></span> Magic Write — Asisten Penulis</h2>
+    <p>Magic Write membantumu menulis teks di dalam Canva. Bukan sekadar autocorrect — ini AI yang benar-benar memahami konteks.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">Cara Menggunakan Magic Write</div>
+    <p><strong>Langkah 1:</strong> Klik pada kotak teks yang sudah ada, atau buat kotak teks baru (klik ikon "T").</p>
+    <p><strong>Langkah 2:</strong> Tekan <strong>spasi dua kali</strong> dengan cepat, atau klik ikon <strong>✨</strong> yang muncul di dekat kursor.</p>
+    <p><strong>Langkah 3:</strong> Ketik perintahmu dalam bahasa apa saja (Indonesia atau Inggris).</p>
+    <p><strong>Langkah 4:</strong> Tekan Enter. Tunggu beberapa detik, hasilnya muncul.</p>
+    <p><strong>Langkah 5:</strong> Edit, pilih bagian yang kamu suka, atau minta AI menulis ulang dengan gaya berbeda.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">Contoh Perintah Magic Write</div>
+    <p>• "Tulis slogan tentang pentingnya membaca buku" → menghasilkan beberapa opsi slogan</p>
+    <p>• "Jadikan paragraf ini lebih singkat" → meringkas teks yang sudah ada</p>
+    <p>• "Ubah gaya tulisan ini menjadi lucu dan anak-anak" → mengubah tone tulisan</p>
+    <p>• "Tulis caption Instagram tentang kegiatan perpustakaan" → menghasilkan caption siap pakai</p>
+    <p>• "Buat 5 ide judul untuk poster festival budaya" → brainstorming ide</p>
+  </div>
+
+  <div class="box bb">
+    <div class="bl">💡 Tips Magic Write</div>
+    <p>Makin spesifik perintahmu, makin bagus hasilnya. Bandingkan: <em>"Tulis tentang buku"</em> (terlalu umum → hasil generik) vs <em>"Tulis slogan 5 kata tentang pentingnya membaca buku 15 menit sebelum tidur untuk anak SMP"</em> (sangat spesifik → hasil jauh lebih tepat).</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-object-ungroup"></i></span> Magic Design — Desain Otomatis</h2>
+    <p>Magic Design membuat desain utuh dari sebuah ide. Ini sempurna untuk <strong>memulai dengan cepat</strong> ketika kamu tidak tahu harus mulai dari mana.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">Cara Menggunakan Magic Design</div>
+    <p><strong>Dari Homepage:</strong> Ketik topik di kolom pencarian → pilih "Magic Design" → Canva membuat beberapa variasi desain → pilih yang paling kamu suka → edit.</p>
+    <p><strong>Dari Editor:</strong> Klik "Magic Studio" di panel kiri → "Magic Design" → masukkan deskripsi → pilih gaya → generate.</p>
+  </div>
+
+  <div class="box bo">
+    <div class="bl">⚠️ Peringatan Penting</div>
+    <p>Magic Design bagus untuk <strong>inspirasi awal</strong>, tapi <strong>JANGAN langsung pakai apa adanya</strong>. Mengapa? Karena desain yang dihasilkan masih terasa "template AI" — generik dan kurang personal. Selalu lakukan: ganti warna sesuai paletmu, ganti font sesuai selera, ubah layout sedikit, tambahkan elemen unik. <strong>Jadikan AI sebagai titik awal, bukan titik akhir.</strong></p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-image"></i></span> Text to Image — Kata Jadi Gambar</h2>
+    <p>Inilah fitur paling "magis" — mengubah <strong>deskripsi teks menjadi gambar</strong> yang tidak ada di manapun di internet. Gambar ini benar-benar <strong>diciptakan baru</strong> oleh AI.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">Langkah Detail Text to Image</div>
+    <p><strong>1.</strong> Buka panel kiri → Magic Studio → Magic Media</p>
+    <p><strong>2.</strong> Pastikan tab <strong>"Text to Image"</strong> yang aktif</p>
+    <p><strong>3.</strong> Ketik deskripsi gambar (prompt) dalam bahasa Inggris untuk hasil terbaik</p>
+    <p><strong>4.</strong> Pilih <strong>gaya visual</strong>: Watercolor, 3D, Anime, Photorealistic, Color Pencil, dll.</p>
+    <p><strong>5.</strong> Pilih <strong>rasio aspek</strong>: Square (1:1), Portrait (4:5), Landscape (16:9)</p>
+    <p><strong>6.</strong> Klik <strong>"Generate Image"</strong></p>
+    <p><strong>7.</strong> Tunggu 10–30 detik. Pilih dari 4–8 gambar yang dihasilkan</p>
+    <p><strong>8.</strong> Klik gambar pilihan → langsung masuk ke kanvas desainmu</p>
+  </div>
+
+  <div class="prmp"><span class="prl">CONTOH PROMPT</span>
+<span class="hlp">A cute orange cat</span> <span class="hl">sitting on a stack of colorful books</span> <span class="hlg">inside a cozy library</span>, <span class="hl">warm sunlight streaming through the window</span>, <span class="hlg">watercolor illustration style</span>, soft pastel colors, dreamy atmosphere</div>
+
+  <div class="tip">
+    <div class="ti g"><i class="fas fa-lightbulb"></i></div>
+    <div class="tc"><strong>Bahasa Inggris vs Indonesia</strong><p>Text to Image umumnya memberikan hasil lebih akurat jika prompt ditulis dalam <strong>bahasa Inggris</strong>. Tidak fasih? Tidak masalah — gunakan kalimat sederhana dan kombinasikan dengan kata kunci gaya yang sudah disediakan di buku ini. Kamu juga bisa meminta Magic Write untuk menerjemahkan prompt dari Indonesia ke Inggris!</p></div>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-eraser"></i></span> Magic Edit & Magic Eraser</h2>
+    <p>Dua fitur ini bekerja pada <strong>gambar yang sudah ada</strong> (bukan membuat gambar baru):</p>
+  </div>
+
+  <div class="tc2">
+    <div class="cc">
+      <h4>🩹 Magic Edit</h4>
+      <p><strong>Menambah/mengubah</strong> bagian gambar. Caranya: seleksi area dengan kuas → tulis perintah (misal "tambahkan topi merah") → AI mengubah area tersebut. Cocok untuk menambahkan elemen yang tidak ada di foto asli.</p>
+    </div>
+    <div class="cc">
+      <h4>🧹 Magic Eraser</h4>
+      <p><strong>Menghapus</strong> objek tidak diinginkan dari foto. Caranya: kuas area objek → AI menghapus dan "mengisi" area tersebut secara natural. Cocok untuk membersihkan background dari objek mengganggu.</p>
+    </div>
+  </div>
+  <div class="pgn">22</div>
+</div>
+
+<!-- ==================== BAB 6.1 — PROMPT ENGINEERING ==================== -->
+<div class="page" id="b6b">
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-terminal"></i></span> Prompt Engineering</h2>
+    <p class="lead"><strong>Prompt engineering</strong> adalah <strong>skill paling penting di era AI</strong> — bahkan lebih penting daripada menguasai tools-nya sendiri. Mengapa? Karena AI yang sama dengan prompt berbeda akan menghasilkan output yang <strong>sangat berbeda</strong>. Orang yang bisa menulis prompt bagus = orang yang bisa menguasai AI.</p>
+  </div>
+
+  <div class="cs">
+    <h3 class="subh">Analogi: Memesan di Restoran</h3>
+    <p>Kalau kamu bilang ke pelayan: <em>"Mau makan."</em> → pelayan bingung. Tapi kalau kamu bilang: <em>"Minta nasi goreng pedas level 3, pakai telur mata sapi, tidak pakai kerupuk, porsi kecil."</em> → pelayan langsung paham dan pesananmu tepat.</p>
+    <p><strong>Prompt = pesanan makanan.</strong> Makin detail instruksi, makin akurat hasilnya.</p>
+  </div>
+
+  <div class="cs">
+    <h3 class="subh">Rumus SADG: Subjek + Aksi + Detail + Gaya</h3>
+    <p>Gunakan rumus ini untuk <strong>setiap prompt</strong> yang kamu tulis:</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Komponen</th><th>Pertanyaan</th><th>Contoh</th></tr></thead>
+      <tbody>
+        <tr><td><strong>S — Subjek</strong></td><td>Siapa/apa objek utamanya?</td><td>"A young girl with hijab"</td></tr>
+        <tr><td><strong>A — Aksi</strong></td><td>Sedang melakukan apa? Di mana?</td><td>"reading a book in a library"</td></tr>
+        <tr><td><strong>D — Detail</strong></td><td>Cahaya? Warna? Suasana? Properti?</td><td>"golden hour light, wooden bookshelves, plants on the window"</td></tr>
+        <tr><td><strong>G — Gaya</strong></td><td>Gaya visual apa?</td><td>"watercolor illustration, soft colors, dreamy"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prmp"><span class="prl">PROMPT LENGKAP (SADG)</span>
+<span class="hlp">A young girl with hijab</span> <span class="hl">reading a book in a library</span>, <span class="hlg">golden hour light coming through the window, wooden bookshelves, small plants on the windowsill</span>, <span class="hl">watercolor illustration style, soft warm colors, dreamy atmosphere</span></div>
+
+  <div class="cs">
+    <h3 class="subh">Perbandingan: Prompt Buruk vs Bagus</h3>
+  </div>
+
+  <div class="cmp">
+    <div class="box br" style="margin:0">
+      <div class="bl">❌ Prompt Buruk</div>
+      <p>"Kucing di perpustakaan"</p>
+      <p style="font-size:.8rem;margin-top:.4rem"><strong>Hasil:</strong> Kucing acak, latar tidak jelas, gaya tidak terkontrol, mungkin tidak sesuai ekspektasi sama sekali.</p>
+    </div>
+    <div class="box bgr" style="margin:0">
+      <div class="bl">✅ Prompt Bagus</div>
+      <p>"A fluffy orange cat sleeping on top of a stack of books in a warm cozy library, soft afternoon light, watercolor illustration style, pastel colors, peaceful mood"</p>
+      <p style="font-size:.8rem;margin-top:.4rem"><strong>Hasil:</strong> Sesuai ekspektasi — kucing oranye, suasana hangat, gaya watercolor yang konsisten.</p>
+    </div>
+  </div>
+
+  <div class="cs">
+    <h3 class="subh">Kamus Kata Kunci Gaya Visual</h3>
+    <p>Simpan daftar ini — kamu akan memakainya berkali-kali:</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Gaya</th><th>Tambahkan di Akhir Prompt</th><th>Cocok Untuk</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Watercolor</strong></td><td>"watercolor illustration, soft edges, painted look, delicate"</td><td>Poster edukasi, buku anak, desain lembut</td></tr>
+        <tr><td><strong>Foto Realistis</strong></td><td>"photorealistic, 8K, highly detailed, natural lighting, DSLR quality"</td><td>Desain yang harus terlihat "nyata"</td></tr>
+        <tr><td><strong>Flat Illustration</strong></td><td>"flat illustration, minimal, clean shapes, no shadows, geometric"</td><td>Infografis, presentasi, konten edukatif</td></tr>
+        <tr><td><strong>Anime/Manga</strong></td><td>"anime style, vibrant colors, cel shading, big eyes, Studio Ghibli inspired"</td><td>Konten untuk anak muda, fun, playful</td></tr>
+        <tr><td><strong>3D/Pixar</strong></td><td>"3D render, Pixar style, cute, rounded shapes, soft lighting, Blender"</td><td>Karakter lucu, mascot, konten anak-anak</td></tr>
+        <tr><td><strong>Sketch/Gambar Tangan</strong></td><td>"pencil sketch, hand drawn, rough lines, black and white, notebook style"</td><td>Desain yang terasa personal, diary, brainstorm</td></tr>
+        <tr><td><strong>Pop Art</strong></td><td>"pop art style, bold colors, halftone dots, comic book style, Andy Warhol"</td><td>Poster event, desain yang berani dan mencolok</td></tr>
+        <tr><td><strong>Minimalis</strong></td><td>"minimalist, simple, clean, lots of white space, few colors"</td><td>Logo, branding, desain elegan</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h3 class="subh">Kata Kunci Suasana & Pencahayaan</h3>
+    <p>Suasana dan pencahayaan sangat mempengaruhi "mood" gambar:</p>
+  </div>
+
+  <div class="tc2">
+    <div class="cc">
+      <h4>🌤️ Pencahayaan</h4>
+      <p>• <strong>Golden hour</strong> — cahaya keemasan sore hari, hangat<br>• <strong>Soft diffused</strong> — cahaya lembut merata, tenang<br>• <strong>Dramatic</strong> — kontras terang-gelap kuat, intens<br>• <strong>Neon glow</strong> — cahaya neon warna-warni, futuristik<br>• <strong>Backlit</strong> — cahaya dari belakang objek, siluet</p>
+    </div>
+    <div class="cc">
+      <h4>🎭 Suasana</h4>
+      <p>• <strong>Dreamy</strong> — seperti mimpi, lembut, ethereal<br>• <strong>Cozy</strong> — nyaman, hangat, mengundang<br>• <strong>Energetic</strong> — penuh semangat, dinamis<br>• <strong>Mysterious</strong> — misterius, gelap, penuh teka-teki<br>• <strong>Joyful</strong> — ceria, bahagia, penuh warna</p>
+    </div>
+  </div>
+
+  <div class="box br">
+    <div class="bl">⚠️ Batasan Text to Image</div>
+    <p>• AI <strong>tidak bisa</strong> menghasilkan teks yang benar-benar bisa dibaca dengan akurat. Untuk teks, tambahkan sendiri di Canva setelah gambar jadi.<br>• Hasil AI <strong>tidak selalu sempurna</strong>. Kadang perlu 3–5 kali generate untuk mendapat hasil yang benar-benar bagus. <strong>Sabar adalah kunci!</strong><br>• Jangan minta AI meniru karakter berlisensi (Disney, Pokemon, dll.) — hasilnya biasanya jelek dan bisa bermasalah hak cipta.</p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan 6.1 — Prompt Challenge!</div>
+    <h4>Tulis 3 Prompt Menggunakan Rumus SADG</h4>
+    <p>Tema bebas. Untuk setiap prompt, tulis: (1) Prompt-nya dalam bahasa Inggris, (2) Terjemahannya ke Indonesia, (3) Gaya visual yang dipilih dan alasannya. Lalu coba generate di Canva dan bandingkan hasilnya dengan ekspektasimu!</p>
+  </div>
+  <div class="pgn">26</div>
+</div>
+
+<!-- ==================== BAB 7 ==================== -->
+<div class="page chs" id="b7">
+  <div class="chn">07</div>
+  <h2 class="cht">Membuat Poster Digital</h2>
+  <p class="chd">Dari konsep ke karya — panduan langkah demi langkah membuat poster yang efektif</p>
+  <div class="chl"></div><div class="pgn">27</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead">Poster adalah salah satu bentuk desain paling umum — dan paling berguna. Di bab ini, kamu akan belajar membuat poster dari <strong>nol</strong>, bukan sekadar mengedit template. Ini adalah proyek pertamamu di camp!</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-bullseye"></i></span> Langkah 0: Tentukan Tujuan</h2>
+    <p><strong>Sebelum menyentuh Canva</strong>, jawab dulu 3 pertanyaan ini:</p>
+    <ul class="cl">
+      <li><strong>Untuk apa poster ini?</strong> — Menginformasikan event? Mengajak aksi? Memperkenalkan sesuatu?</li>
+      <li><strong>Siapa target audiensnya?</strong> — Anak SD? Remaja? Orang tua? Guru?</li>
+      <li><strong>Di mana akan dipajang?</strong> — Instagram story? Printed A3? Layar perpustakaan?</li>
+    </ul>
+    <p>Jawaban dari 3 pertanyaan ini akan menentukan <strong>semua keputusan desainmu</strong>: warna, font, ukuran, gaya gambar, semuanya.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-pencil-ruler"></i></span> Langkah 1: Pilih Ukuran</h2>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Platform</th><th>Ukuran di Canva</th><th>Rasio</th></tr></thead>
+      <tbody>
+        <tr><td>Instagram Post</td><td>1080 × 1080 px</td><td>1:1 (Square)</td></tr>
+        <tr><td>Instagram Story</td><td>1080 × 1920 px</td><td>9:16 (Portrait)</td></tr>
+        <tr><td>Poster cetak A4</td><td>2480 × 3508 px</td><td>~1:1.41</td></tr>
+        <tr><td>Poster cetak A3</td><td>3508 × 4961 px</td><td>~1:1.41</td></tr>
+        <tr><td>Facebook Cover</td><td>1640 × 624 px</td><td>~2.63:1 (Landscape)</td></tr>
+        <tr><td>Presentasi</td><td>1920 × 1080 px</td><td>16:9 (Landscape)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-palette"></i></span> Langkah 2: Tentukan Palet Warna</h2>
+    <p>Gunakan ilmu dari <strong>Bab 2</strong>! Pilih 3–4 warna: 1 dominan (background), 1 sekunder (elemen pendukung), 1 aksen (CTA/highlight). <strong>Tulis palet warnamu di kertas dulu</strong> sebelum mulai mendesain.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-font"></i></span> Langkah 3: Atur Tipografi</h2>
+    <p>Gunakan ilmu dari <strong>Bab 3</strong>! Pilih maksimal 2 font. Tentukan hierarki: judul berapa px, sub-judul berapa px, isi berapa px. <strong>Ukur di kertas dulu</strong>.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-layer-group"></i></span> Langkah 4: Susun Layout</h2>
+    <p>Layout adalah cara elemen-elemen disusun di dalam kanvas. Berikut 5 layout klasik yang <strong>selalu berhasil</strong>:</p>
+  </div>
+
+  <div class="tc3">
+    <div class="cc">
+      <i class="fas fa-arrows-alt-v" style="color:var(--p6)"></i>
+      <h4>Vertikal Stack</h4>
+      <p>Semua elemen ditumpuk ke bawah: judul → gambar → teks → CTA. Simple dan aman.</p>
+    </div>
+    <div class="cc">
+      <i class="fas fa-columns" style="color:var(--gdk)"></i>
+      <h4>Split 50/50</h4>
+      <p>Kanvas dibagi dua: gambar di kiri, teks di kanan (atau sebaliknya). Seimbang dan profesional.</p>
+    </div>
+    <div class="cc">
+      <i class="fas fa-compress-alt" style="color:var(--gr6)"></i>
+      <h4>Centered Focus</h4>
+      <p>Semua elemen di tengah, simetris. Sangat cocok untuk poster event formal.</p>
+    </div>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-check-double"></i></span> Langkah 5: Checklist Sebelum Selesai</h2>
+    <p>Sebelum mengunduh atau mempublikasikan poster, cek satu per satu:</p>
+  </div>
+
+  <div class="chk">
+    <span><i class="fas fa-check"></i> Pesan utama terbaca dalam 3 detik?</span>
+    <span><i class="fas fa-check"></i> Hierarki teks jelas (judul > sub > isi)?</span>
+    <span><i class="fas fa-check"></i> Maksimal 3 warna utama?</span>
+    <span><i class="fas fa-check"></i> Maksimal 2 font?</span>
+    <span><i class="fas fa-check"></i> Ada ruang kosong yang cukup?</span>
+    <span><i class="fas fa-check"></i> Teks kontras tinggi dengan background?</span>
+    <span><i class="fas fa-check"></i> Tidak ada elemen yang "mengambang" tanpa tujuan?</span>
+    <span><i class="fas fa-check"></i> Ukuran teks cukup besar untuk dibaca dari jarak jauh?</span>
+    <span><i class="fas fa-check"></i> CTA (tombol/ajakan) jelas dan menonjol?</span>
+    <span><i class="fas fa-check"></i> Tidak ada typo/kesalahan ejaan?</span>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Proyek Poster: "Liburanku Produktif"</div>
+    <h4>Buat poster tentang kegiatan produktif saat liburan!</h4>
+    <p><strong>Spesifikasi:</strong> Ukuran Instagram Post (1080×1080). Wajib mengandung: judul, minimal 1 gambar (bisa dari Text to Image), minimal 3 poin kegiatan, dan palet warna yang kamu tentukan sendiri (tuliskan di kertas).</p>
+    <p><strong>Yang akan dinilai:</strong> Hierarki teks, pemilihan warna, keseimbangan layout, kreativitas gambar, dan kejelasan pesan.</p>
+  </div>
+  <div class="pgn">30</div>
+</div>
+
+<!-- ==================== BAB 8 ==================== -->
+<div class="page chs" id="b8">
+  <div class="chn">08</div>
+  <h2 class="cht">Membuat Infografis</h2>
+  <p class="chd">Mengubah data dan informasi menjadi visual yang mudah dipahami dalam sekejap</p>
+  <div class="chl"></div><div class="pgn">31</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead"><strong>Infografis</strong> = Informasi + Grafis. Ini adalah cara menyajikan data, fakta, atau proses dalam bentuk visual yang <strong>lebih mudah dipahami daripada teks biasa</strong>. Orang mengingat 65% informasi visual, tapi hanya 10% informasi teks — itulah kekuatan infografis.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-list-check"></i></span> Kapan Menggunakan Infografis?</h2>
+    <ul class="cl">
+      <li><strong>Membandingkan data</strong> — "Perbandingan waktu membaca anak Indonesia vs negara lain"</li>
+      <li><strong>Menjelaskan proses</strong> — "5 langkah membuat poster di Canva"</li>
+      <li><strong>Menyajikan fakta</strong> — "10 manfaat membaca buku untuk otak"</li>
+      <li><strong>Menunjukkan timeline</strong> — "Sejarah perpustakaan di Indonesia"</li>
+      <li><strong>Mengkomunikasikan survei</strong> — "Hasil survei: buku favorit pelajar Banyuwangi"</li>
+    </ul>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-chart-pie"></i></span> 5 Jenis Visualisasi Data</h2>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Jenis</th><th>Fungsi</th><th>Contoh Penggunaan</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bar Chart</strong></td><td>Membandingkan kuantitas antar kategori</td><td>Jumlah buku yang dibaca per bulan</td></tr>
+        <tr><td><strong>Pie Chart</strong></td><td>Menunjukkan proporsi/persentase dari keseluruhan</td><td>Genre buku favorit (50% fiksi, 30% sains, 20% sejarah)</td></tr>
+        <tr><td><strong>Timeline</strong></td><td>Menunjukkan urutan kejadian dalam waktu</td><td>Tahapan sejarah perpustakaan dari tahun ke tahun</td></tr>
+        <tr><td><strong>Ikon + Angka</strong></td><td>Menampilkan statistik kunci dengan cepat</td><td>"📚 1.200 buku baru | 👥 500 pengunjung/bulan"</td></tr>
+        <tr><td><strong>Diagram Alur</strong></td><td>Menjelaskan langkah-langkah atau proses</td><td>"1. Pilih buku → 2. Baca → 3. Catat → 4. Review"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-ruler-combined"></i></span> Struktur Infografis yang Efektif</h2>
+    <p>Setiap infografis yang baik memiliki struktur ini:</p>
+  </div>
+
+  <ol class="nol">
+    <li><strong>Header / Judul</strong> — Satu kalimat yang menjelaskan apa infografis ini tentang. Harus bisa dipahami dalam 3 detik. Contoh: "5 Manfaat Membaca yang Terbukti Secara Ilmiah".</li>
+    <li><strong>Sub-header</strong> — Kalimat pendukung yang memberi konteks. Contoh: "Berdasarkan riset dari University of Sussex, 2019".</li>
+    <li><strong>Body / Konten Visual</strong> — Ini intinya. Gunakan chart, ikon, ilustrasi, dan angka-angka kunci. <strong>Minimal 70% visual, maksimal 30% teks.</strong></li>
+    <li><strong>Footer / Sumber</strong> — Tulis sumber data dan siapa yang membuat infografis. Ini menunjukkan kredibilitas.</li>
+  </ol>
+
+  <div class="box br">
+    <div class="bl">⚠️ Kesalahan Umum Infografis</div>
+    <p>• <strong>Terlalu banyak teks</strong> — Kalau isinya lebih banyak teks dari visual, itu bukan infografis — itu artikel dengan hiasan.<br>• <strong>Data tidak jelas</strong> — Chart tanpa label, angka tanpa satuan, sumbu tanpa keterangan.<br>• <strong>Terlalu banyak jenis chart</strong> — Gunakan 1–2 jenis chart saja per infografis. Lebih dari itu = membingungkan.<br>• <strong>Warna chart tidak bermakna</strong> — Setiap warna di chart harus punya makna (misal: merah = negatif, hijau = positif).</p>
+  </div>
+
+  <div class="tip">
+    <div class="ti g"><i class="fas fa-lightbulb"></i></div>
+    <div class="tc"><strong>Cara Membuat Chart di Canva</strong><p>Panel kiri → <strong>Elemen</strong> → tab <strong>Chart</strong> → pilih jenis chart → klik chart yang muncul di kanvas → klik <strong>"Edit Data"</strong> di panel kanan → masukkan angka-angkamu → chart otomatis berubah! Kamu bisa mengubah warna setiap bar/segmen di panel kanan.</p></div>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Proyek Infografis</div>
+    <h4>Buat Infografis "Manfaat Membaca Buku"</h4>
+    <p><strong>Spesifikasi:</strong> Minimal berisi 1 chart (pie atau bar), minimal 3 ikon + angka statistik, header + sub-header, dan footer dengan sumber. Data boleh berdasarkan riset yang kamu ketahui atau data fiktif yang realistis.</p>
+  </div>
+  <div class="pgn">34</div>
+</div>
+
+<!-- ==================== BAB 9 ==================== -->
+<div class="page chs" id="b9">
+  <div class="chn">09</div>
+  <h2 class="cht">Konten Media Sosial</h2>
+  <p class="chd">Mendesain untuk Instagram & TikTok — ukuran, gaya, dan strategi visual yang efektif</p>
+  <div class="chl"></div><div class="pgn">35</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead>Media sosial adalah galeri desainmu yang paling terlihat. Di bab ini, kamu belajar mendesain konten yang <strong>berhenti scroll</strong> — bukan konten yang dlewati tanpa dilihat.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-ruler-combined"></i></span> Ukuran Konten Medsos</h2>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="ctbl">
+      <thead><tr><th>Jenis Konten</th><th>Ukuran</th><th>Tips Desain</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Instagram Post</strong></td><td>1080 × 1080 px (1:1)</td><td>Simetris, rapi, bisa berupa quote, tips, atau infografis mini</td></tr>
+        <tr><td><strong>Instagram Story</strong></td><td>1080 × 1920 px (9:16)</td><td>Vertikal! Teks di tengah, jangan terlalu banyak elemen, gunakan stiker</td></tr>
+        <tr><td><strong>Instagram Carousel</strong></td><td>1080 × 1080 atau 1080 × 1350 px</td><td>Slide 1 = hook (pengantar menarik), slide 2–9 = konten, slide 10 = CTA</td></tr>
+        <tr><td><strong>TikTok Thumbnail</strong></td><td>1080 × 1920 px (9:16)</td><td>Wajah/objek utama besar di tengah, teks minimal, warna kontras tinggi</td></tr>
+        <tr><td><strong>YouTube Thumbnail</strong></td><td>1280 × 720 px (16:9)</td><td>Wajah ekspresif + teks besar + warna kontras, harus menarik saat kecil</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-bolt"></i></span> 3 Prinsip Konten yang "Berhenti Scroll"</h2>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">1. Hook Kuat dalam 1 Detik Pertama</div>
+    <p>Orang memutuskan untuk berhenti atau scroll dalam <strong>0,5–1 detik</strong>. Elemen pertama yang dilihat (biasanya teks besar atau gambar) harus <strong>memaksa</strong> mereka berhenti. Cara: gunakan pertanyaan, angka mengejutkan, atau pernyataan kontroversial.</p>
+    <p><strong>Contoh hook jelek:</strong> "Tentang Membaca Buku"<br><strong>Contoh hook bagus:</strong> "90% Anak Indonesia Hanya Baca 1 Buku/Tahun 😱"</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">2. Visual Sederhana & Fokus</div>
+    <p>Konten medsos dilihat di layar kecil sambil scroll cepat. Jangan isi dengan terlalu banyak elemen. <strong>Satu pesan utama per konten.</strong> Gunakan ruang kosong agar mata tidak kewalahan.</p>
+  </div>
+
+  <div class="exbl">
+    <div class="exl">3. Konsistensi Visual (Branding)</div>
+    <p>Feed Instagram yang cantik biasanya punya <strong>gaya visual yang konsisten</strong>: palet warna yang sama, font yang sama, gaya foto/illustrasi yang sama. Ini membuat profil terlihat profesional dan "punya identitas".</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-quote-left"></i></span> Jenis Konten Populer untuk Anak Muda</h2>
+  </div>
+
+  <div class="tc2">
+    <div class="cc">
+      <h4>💬 Quote Post</h4>
+      <p>Kutipan inspiratif di atas background menarik. Tips: font besar, background yang tidak terlalu ramai, tambahkan logo/username kecil di bawah.</p>
+    </div>
+    <div class="cc">
+      <h4>📋 List/Tips Post</h4>
+      <p>"5 Tips...", "3 Cara...", "Top 10...". Format paling populer karena mudah dicerna. Gunakan ikon untuk setiap poin.</p>
+    </div>
+    <div class="cc">
+      <h4>📊 Mini Infografis</h4>
+      <p>Infografis versi kecil untuk satu statistik atau fakta menarik. Efektif karena ringan tapi informatif.</p>
+    </div>
+    <div class="cc">
+      <h4>🎨 Before/After</h4>
+      <p>Menunjukkan transformasi. Bisa berupa desain, keterampilan, atau perbandingan apapun. Selalu menarik rasa penasaran.</p>
+    </div>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Proyek Konten Medsos</div>
+    <h4>Buat 1 Instagram Post + 1 Story</h4>
+    <p><strong>Instagram Post:</strong> Quote atau tips tentang desain/AI dengan gaya visual yang konsisten.<br><strong>Instagram Story:</strong> Versi story dari post yang sama — tapi disesuaikan untuk format vertikal (teks di tengah, lebih minimalis).<br><strong>Bonus:</strong> Buat versi carousel 3 slide!</p>
+  </div>
+  <div class="pgn">38</div>
+</div>
+
+<!-- ==================== BAB 10 ==================== -->
+<div class="page chs" id="b10">
+  <div class="chn">10</div>
+  <h2 class="cht">Presentasi Percaya Diri</h2>
+  <p class="chd">Cara mempresentasikan karya desainmu di depan orang lain — bukan cuma slide yang bagus, tapi juga cara bicara yang memikat</p>
+  <div class="chl"></div><div class="pgn">39</div>
+</div>
+
+<div class="page">
+  <div class="cs">
+    <p class="lead">Di hari terakhir camp, kamu akan <strong>mempresentasikan karyamu di depan juri dan audiens</strong>. Banyak anak yang bisa mendesain bagus tapi gugup saat presentasi. Di bab ini, kamu belajar teknik presentasi yang bikin karyamu terlihat <strong>10x lebih mengesankan</strong>.</p>
+  </div>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-chalkboard-teacher"></i></span> Struktur Presentasi 3 Menit</h2>
+    <p>Waktu terbatas, jadi setiap detik harus bermakna. Gunakan struktur ini:</p>
+  </div>
+
+  <ol class="nol">
+    <li><strong>Hook (15 detik)</strong> — Kalimat pembuka yang menarik perhatian. Bukan "Hai, nama saya...". Tapi sesuatu yang bikin audiens penasaran. Contoh: "Pernahkah kalian bayangkan bisa membuat gambar hanya dengan mengetik kata-kata?"</li>
+    <li><strong>Proses Kreatif (60 detik)</strong> — Ceritakan <strong>bagaimana</strong> kamu membuat karya. Ini bagian paling menarik! Jelaskan: inspirasi dari mana, mengapa pilih warna itu, di mana kamu pakai AI, di mana sentuhan manualnya, tantangan apa yang kamu hadapi.</li>
+    <li><strong>Demonstrasi Karya (45 detik)</strong> — Tunjukkan karyamu. Jelaskan elemen-elemen kuncinya. Bukan sekadar "ini poster saya" — tapi "di sini saya menggunakan kontras warna biru-kuning agar judul langsung terbaca".</li>
+    <li><strong>Penutup (30 detik)</strong> — Pelajaran apa yang kamu dapat? Apa yang ingin kamu coba selanjutnya? Ucapkan terima kasih.</li>
+  </ol>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-microphone-alt"></i></span> 8 Tips Bicara Percaya Diri</h2>
+  </div>
+
+  <ol class="nol">
+    <li><strong>Berlatih keras sebelumnya.</strong> Bukan cukup 1x — berlatih minimal <strong>5 kali</strong> di depan cermin, lalu di depan teman/keluarga. Yang terasa canggung di latihan pertama akan mulai lancar di latihan kelima.</li>
+    <li><strong>Jangan membaca teks.</strong> Tulis poin-poin kunci di kertas kecil (bukan kalimat lengkap). Membaca teks = monoton dan membosankan. Berbicara dari poin = natural dan percaya diri.</li>
+    <li><strong>Eye contact.</strong> Lihat mata audiens, bukan layar. Kalau gugup, lihat dahi mereka — terlihat seperti eye contact tapi tidak terlalu intens.</li>
+    <li><strong>Bicara pelan dan jelas.</strong> Saat nerves, orang cenderung bicara cepat. Sadari ini dan <strong>perlambat 20%</strong> dari kecepatan biasa.</li>
+    <li><strong>Jeda itu oke.</strong> Berhenti sebentar untuk bernapas bukan tanda lupa — itu tanda kamu berpikir dan memberi ruang audiens mencerna. Jeda 2–3 detik terasa lama untukmu, tapi normal untuk audiens.</li>
+    <li><strong>Senyum.</strong> Senyum otomatis membuat suara lebih hangat dan membuat audiens simpatik. Senyum juga mengurangi nerves secara biologis.</li>
+    <li><strong>Tunjukkan semangat.</strong> Kalau kamu tidak terlihat excited dengan karyamu sendiri, audiens juga tidak akan excited. Ton suara naik-turun, bukan monoton.</li>
+    <li><strong>Terima keterbatasan.</strong> Kalau salah bicara atau lupa, jangan panik. Tertawa kecil dan lanjutkan. Audiens jauh lebih simpatik daripada yang kamu kira.</li>
+  </ol>
+
+  <div class="cs">
+    <h2 class="sh"><span class="hi"><i class="fas fa-desktop"></i></span> Slide Presentasi yang Efektif</h2>
+    <p>Slide yang bagus <strong>mendukung</strong> pembicaraan, bukan <strong>menggantikan</strong> pembicaraan. Aturannya:</p>
+  </div>
+
+  <div class="chk">
+    <span><i class="fas fa-check"></i> Maksimal 1 ide per slide</span>
+    <span><i class="fas fa-check"></i> Teks sesedikit mungkin (judul + 3 poin max)</span>
+    <span><i class="fas fa-check"></i> Font besar (minimal 24pt untuk isi)</span>
+    <span><i class="fas fa-check"></i> Gambar besar dan berkualitas</span>
+    <span><i class="fas fa-check"></i> Konsisten warna & font di semua slide</span>
+    <span><i class="fas fa-check"></i> Tidak ada animasi berlebihan</span>
+    <span><i class="fas fa-check"></i> Slide penutup: terima kasih + kontak/info</span>
+    <span><i class="fas fa-check"></i> Total slide: 5–10 untuk presentasi 3 menit</span>
+  </div>
+
+  <div class="box bp">
+    <div class="bl">📐 Aturan 10-20-30 (Guy Kawasaki)</div>
+    <p>Untuk presentasi umum: <strong>maksimal 10 slide</strong>, <strong>tidak lebih dari 20 menit</strong>, <strong>font minimal 30pt</strong>. Meskipun presentasimu hanya 3 menit, prinsip "sedikit slide, font besar" tetap berlaku.</p>
+  </div>
+
+  <div class="prac">
+    <div class="pl"><i class="fas fa-pencil-alt"></i> Latihan Presentasi</div>
+    <h4>Presentasikan Poster "Liburanku Produktif"mu!</h4>
+    <p>Gunakan struktur 4 bagian di atas. Berlatih minimal 3 kali di depan cermin. Minta teman sebangku mendengarkan dan memberi feedback: "Apa yang paling menarik? Bagian mana yang kurang jelas?"</p>
+  </div>
+  <div class="pgn">42</div>
+</div>
+
+<!-- ==================== PENUTUP ==================== -->
+<div class="page chs" id="tutup">
+  <div style="font-size:2.5rem;margin-bottom:.8rem">✦</div>
+  <h2 class="cht" style="font-size:clamp(1.6rem,5vw,2.2rem)">Penutup</h2>
+  <p class="chd" style="max-width:500px;margin:0 auto">Kamu sudah punya semua bekal. Sekarang waktunya berkarya!</p>
+  <div class="chl"></div>
+
+  <div style="max-width:520px;margin:1.5rem auto 0;text-align:left">
+    <p class="lead">Selamat! Kamu sudah menyelesaikan seluruh materi buku ini. Dari memahami elemen desain, teori warna, tipografi, etika AI, menguasai Canva, prompt engineering, hingga teknik presentasi — semuanya ada di tanganmu sekarang.</p>
+    <p>Tapi ingat: <strong>membaca buku ini tidak membuat kamu jago desain</strong>. Yang membuat kamu jago adalah <strong>praktik</strong>. Semakin banyak kamu mencoba, gagal, mencoba lagi — semakin baik hasilnya.</p>
+    <p>Di Canva AI Camp nanti, kamu akan punya <strong>3 hari penuh</strong> untuk mempraktikkan semua ilmu ini dengan bimbingan mentor. Manfaatkan sebaik-baiknya. Jangan takut salah. Jangan takut hasilnya jelek. <strong>Setiap desainer hebat pernah melewati fase "jelek" — yang membedakan mereka adalah mereka tidak berhenti.</strong></p>
+  </div>
+
+  <div class="sepd">Inspiring creativity & digital literacy</div>
+
+  <blockquote style="max-width:450px;margin:0 auto;font-size:.95rem">"Kreativitas adalah keberanian membiarkan ide-idemu keluar dari kepala dan masuk ke dunia nyata."</blockquote>
+
+  <p style="margin-top:1.5rem;font-size:.85rem;color:var(--mt);max-width:460px;margin-left:auto;margin-right:auto">
+    Buku materi ini disusun untuk keperluan Canva AI Camp 2026 — diselenggarakan oleh Perpustakaan Daerah Kabupaten Banyuwangi. Dilarang memperbanyak tanpa izin untuk keperluan komersial.
+  </p>
+  <div class="pgn">43</div>
+</div>
+
+<div class="eftr">
+  <p><i class="fas fa-book-open" style="color:var(--p4)"></i> Buku Materi Canva AI Camp 2026</p>
+  <p>© 2026 Perpustakaan Daerah Kabupaten Banyuwangi</p>
+  <p style="margin-top:.2rem;font-size:.7rem">Jl. Letkol Istiqlah No. 14, Lingkungan Kepatihan, Banyuwangi</p>
+</div>
+
+<script>
+  // Nav toggle
+  const navTog=document.getElementById('navTog'),eNav=document.getElementById('eNav'),navOv=document.getElementById('navOv');
+  function openN(){eNav.classList.add('open');navOv.classList.add('show');navTog.innerHTML='<i class="fas fa-times"></i>'}
+  function closeN(){eNav.classList.remove('open');navOv.classList.remove('show');navTog.innerHTML='<i class="fas fa-bars"></i>'}
+  navTog.addEventListener('click',()=>eNav.classList.contains('open')?closeN():openN());
+  navOv.addEventListener('click',closeN);
+  eNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeN));
+
+  // Progress
+  const pBar=document.getElementById('progBar');
+  window.addEventListener('scroll',()=>{const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;pBar.style.width=(s/d*100)+'%'});
+
+  // Active nav
+  const secs=document.querySelectorAll('[id]'),navAs=eNav.querySelectorAll('a');
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navAs.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+id)})}})},{rootMargin:'-20% 0px -70% 0px'});
+  secs.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
