@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flipbook Demo</title>
+<style>
+body{margin:0;font-family:Arial;background:#e9ecef}
+.viewer{perspective:1500px;max-width:1000px;margin:20px auto}
+.page{display:none;background:white;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.15);padding:20px;transform-origin:left center}
+.page.active{display:block;animation:flip .6s ease}
+@keyframes flip{from{transform:rotateY(-90deg);opacity:.3}to{transform:rotateY(0);opacity:1}}
+.nav{position:sticky;top:0;background:#222;color:#fff;padding:10px;text-align:center}
+button{padding:10px 16px;margin:0 5px}
+</style></head><body>
+<div class="nav">
+<button onclick="prevPage()">◀ Sebelumnya</button>
+<span id="info"></span>
+<button onclick="nextPage()">Berikutnya ▶</button>
+</div>
+<div class="viewer">
+<div class="page active"><h1>Demo Flipbook</h1><p>Ini contoh transformasi ebook menjadi mode membalik halaman. Untuk versi final saya sarankan memecah seluruh bab menjadi halaman terpisah.</p></div>
+<div class="page"><h2>Konten Asli</h2><p>File sumber berhasil dimuat. Versi demo ini menunjukkan mekanisme flip-page.</p></div>
+</div>
+<script>
+let i=0;
+const p=()=>document.querySelectorAll('.page');
+function show(n){const pages=p();pages.forEach(x=>x.classList.remove('active'));pages[n].classList.add('active');document.getElementById('info').textContent=(n+1)+' / '+pages.length;}
+function nextPage(){if(i<p().length-1)i++;show(i);}
+function prevPage(){if(i>0)i--;show(i);}
+show(0);
+</script></body></html>
